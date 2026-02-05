@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './BeyondCode.css';
 
 // Book data for The Disclosure Team
@@ -18,32 +18,55 @@ const disclosureBooks = [
 
 // Mahabharat translations - Added Geeta Press
 const mahabharatBooks = [
-    { title: 'BORI Critical Edition', cover: '/Beyond Code/Books/Mahabharat - BORI Critical Edition.jpg', description: 'The scholarly gold standard' },
+    { title: 'BORI Critical Edition', cover: '/Beyond Code/Books/Mahabharat - BORI Critical Edition.jpg', description: 'The scholarly standard' },
     { title: 'Kisari Mohan Ganguli', cover: '/Beyond Code/Books/Mahabharat - Kisari Mohan Ganguli.jpg', description: 'Classic English translation' },
-    { title: 'M. N. Dutt', cover: '/Beyond Code/Books/Mahabharat - M. N. Dutt.webp', description: 'Prose translation' },
+    { title: 'M. N. Dutt', cover: '/Beyond Code/Books/Mahabharat - M. N. Dutt.webp', description: 'Prose translation (My Favourite)' },
     { title: 'Geeta Press', cover: '/Beyond Code/Books/Mahabharat - Geeta Press.jpg', description: 'Hindi translation' },
 ];
 
 export default function BeyondCode() {
+    const sectionRef = useRef(null);
     const [hoveredBook, setHoveredBook] = useState(null);
 
+    useEffect(() => {
+        const section = sectionRef.current;
+        if (!section) return;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        section.classList.add('show-animate');
+                    } else {
+                        section.classList.remove('show-animate');
+                    }
+                });
+            },
+            {
+                threshold: 0.15,
+                rootMargin: '-50px 0px'
+            }
+        );
+
+        observer.observe(section);
+        return () => observer.disconnect();
+    }, []);
+
     return (
-        <section className="beyond-code" id="beyond-code">
+        <section className="beyond-code" id="beyond-code" ref={sectionRef}>
             {/* Section Header */}
             <div className="beyond-header">
                 <h2 className="beyond-title">
                     Beyond <span>Code</span>
                 </h2>
-                <p className="beyond-subtitle">Where curiosity knows no boundaries</p>
-                <div className="beyond-divider">
-                    <span className="divider-star">✦</span>
-                </div>
                 {/* Personality Statement */}
                 <p className="personality-statement">
                     <span className="highlight">This person is not just a coder.</span> He's an eager and eccentric explorer
-                    with deep curiosities that stretch far beyond the boundaries of technology —
-                    into the mysteries of the universe, ancient wisdom, cultural expression, and the untamed wild.
+                    with deep curiosities that stretch far beyond the boundaries of technology - into the mysteries of the universe, ancient wisdom, cultural expression, and the untamed wild.
                 </p>
+                <div className="beyond-divider">
+                    <span className="divider-star">✦</span>
+                </div>
             </div>
 
             {/* Portal Grid */}
@@ -79,18 +102,17 @@ export default function BeyondCode() {
                                 <h3 className="portal-title disclosure-title">The Disclosure Team</h3>
                                 <p className="portal-tagline">Exploring the Unexplained</p>
                                 <div className="portal-tags">
-                                    <span className="tag">UFOs</span>
-                                    <span className="tag">Paranormal</span>
-                                    <span className="tag">Quantum</span>
-                                    <span className="tag">Mysteries</span>
+                                    <span className="tag">Flying Saucers</span>
+                                    <span className="tag">Paranormalism</span>
+                                    <span className="tag">Quantum Science</span>
+                                    <span className="tag">Unsolved Mysteries</span>
                                 </div>
                             </div>
                         </div>
 
                         <p className="portal-description">
-                            Since childhood, I've been fascinated by the mysteries of the universe —
-                            extraterrestrial phenomena, quantum science, unexplained events, and the
-                            intersection of physics and metaphysics. I lead a small international team
+                            Since childhood, I've been fascinated by the mysteries of the universe - extraterrestrial phenomena, Quantum Science, unexplained events, and the
+                            intersection of Physics and Metaphysics. I've lead a small international team
                             of curious minds exploring these frontiers.
                         </p>
 
@@ -105,12 +127,10 @@ export default function BeyondCode() {
                                     <a href="https://in.pinterest.com/thedisclosureteam/" target="_blank" rel="noopener noreferrer" className="platform-link pinterest">
                                         <i className="bx bxl-pinterest"></i>
                                         <span>Pinterest</span>
-                                        <span className="follower-count">17K+</span>
                                     </a>
                                     <a href="https://instagram.com/thedisclosureteam" target="_blank" rel="noopener noreferrer" className="platform-link instagram">
                                         <i className="bx bxl-instagram"></i>
                                         <span>Instagram</span>
-                                        <span className="follower-count">8K+</span>
                                     </a>
                                     <a href="https://t.me/theunsolvedworld" target="_blank" rel="noopener noreferrer" className="platform-link telegram">
                                         <i className="bx bxl-telegram"></i>
@@ -141,7 +161,7 @@ export default function BeyondCode() {
                         <div className="books-section">
                             <div className="books-header">
                                 <img src="/Beyond Code/The Disclosure Team - Books.jpg" alt="Books" className="section-icon" />
-                                <span>Recommended Reading</span>
+                                <span>Some of What I've Read and Recommended Reading</span>
                             </div>
                             <div className="books-grid">
                                 {disclosureBooks.map((book, idx) => (
@@ -204,10 +224,7 @@ export default function BeyondCode() {
                         </div>
 
                         <p className="portal-description bharatvarsh-desc">
-                            I've always been drawn to the depths of our ancient Vedic heritage —
-                            the profound philosophy, the epic narratives of Mahabharat, and the
-                            timeless wisdom preserved in our scriptures. Here are translations
-                            I've studied and recommend.
+                            I'm drawn to the depths of our ancient Vedic heritage - the profound philosophy, the epic narratives of Mahabharat, and the timeless wisdom preserved in our scriptures. Here are translations by some authors which I've studied and recommend.
                         </p>
 
                         {/* Mahabharat Translations - Updated with 4 books and classier author styles */}
@@ -271,10 +288,10 @@ export default function BeyondCode() {
                             />
                             <div className="portal-info">
                                 <h3 className="portal-title rapnation-title">THE RAP NATION</h3>
-                                <p className="portal-tagline rapnation-tagline">90s Hip Hop • East Coast vs West Coast</p>
+                                <p className="portal-tagline rapnation-tagline">90s Hip Hop</p>
                                 <div className="portal-tags rapnation-tags">
                                     <span className="tag">Tupac</span>
-                                    <span className="tag">Biggie</span>
+                                    <span className="tag">Eminem</span>
                                     <span className="tag">Boom Bap</span>
                                     <span className="tag">Golden Era</span>
                                 </div>
@@ -282,8 +299,8 @@ export default function BeyondCode() {
                         </div>
 
                         <p className="portal-description rapnation-desc">
-                            A devoted listener of Western hip hop, particularly the revolutionary
-                            90s era — the East Coast vs West Coast rivalries, the raw storytelling,
+                            Used to be a devoted listener of Western hip hop, particularly the revolutionary
+                            90s era, the raw storytelling, no mumble rapping, classic beats
                             and the birth of legends. While I appreciate modern artists, nothing
                             hits like the Golden Era.
                         </p>
@@ -306,13 +323,13 @@ export default function BeyondCode() {
                                 <div className="vinyl-disc">
                                     <i className="bx bxl-telegram"></i>
                                 </div>
-                                <span>TRN Music Bot</span>
+                                <span>˹ᴛʀɴ ꭙ ᴍᴜꜱɪᴄ˼ ♪</span>
                             </a>
                             <a href="https://github.com/TheRapNation" target="_blank" rel="noopener noreferrer" className="vinyl-link">
                                 <div className="vinyl-disc github">
                                     <i className="bx bxl-github"></i>
                                 </div>
-                                <span>Open Source</span>
+                                <span>Open Source <br />&nbsp;&nbsp;&nbsp;(Bot Repo)</span>
                             </a>
                         </div>
                     </div>
@@ -356,7 +373,7 @@ export default function BeyondCode() {
                         </div>
 
                         <p className="portal-description safari-desc">
-                            Exploring the untamed beauty of the natural world — the fascinating
+                            Exploring the untamed beauty of the natural world - the fascinating
                             creatures, the delicate ecosystems, and the wild wonders that remind
                             us of life beyond our screens.
                         </p>
@@ -385,7 +402,7 @@ export default function BeyondCode() {
                 <p className="beyond-quote">
                     "The universe is not only queerer than we suppose, but queerer than we can suppose."
                 </p>
-                <span className="quote-author">— J.B.S. Haldane</span>
+                <span className="quote-author">~ J.B.S. Haldane</span>
             </div>
         </section>
     );

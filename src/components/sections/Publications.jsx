@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import './Publications.css';
 
 const publications = [
@@ -40,8 +41,34 @@ const publications = [
 ];
 
 export default function Publications() {
+    const sectionRef = useRef(null);
+
+    useEffect(() => {
+        const section = sectionRef.current;
+        if (!section) return;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        section.classList.add('show-animate');
+                    } else {
+                        section.classList.remove('show-animate');
+                    }
+                });
+            },
+            {
+                threshold: 0.15,
+                rootMargin: '-50px 0px'
+            }
+        );
+
+        observer.observe(section);
+        return () => observer.disconnect();
+    }, []);
+
     return (
-        <section className="publications" id="publications">
+        <section className="publications" id="publications" ref={sectionRef}>
             {/* Background Elements */}
             <div className="publications-bg">
                 <div className="grid-pattern"></div>
@@ -54,9 +81,6 @@ export default function Publications() {
                 <h2 className="publications-title">
                     Research & <span>Publications</span>
                 </h2>
-                <p className="publications-subtitle">
-                    Contributing to the advancement of knowledge through peer-reviewed research
-                </p>
             </div>
 
             {/* Publications Grid */}

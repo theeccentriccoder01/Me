@@ -4,69 +4,58 @@ import { useState, useEffect } from 'react';
 import './CreativeNavbar.css';
 
 const navItems = [
-    { id: 'home', name: 'Home', icon: '🏠' },
-    { id: 'about', name: 'About', icon: '👤' },
-    { id: 'journey', name: 'My Journey', icon: '🎓' },
-    { id: 'edulinkup', name: 'EduLinkUp', icon: '🌐' },
-    { id: 'events', name: 'Events', icon: '🎪' },
-    { id: 'skills', name: 'Skills', icon: '⚡' },
-    { id: 'certifications', name: 'Certifications', icon: '🏆' },
-    { id: 'projects', name: 'Projects', icon: '🚀' },
-    { id: 'contact', name: 'Contact', icon: '✉️' },
+    { id: 'home', name: 'Home' },
+    { id: 'about', name: 'About' },
+    { id: 'education', name: 'My Journey' },
+    { id: 'edulinkup', name: 'EduLinkUp' },
+    { id: 'events', name: 'Events' },
+    { id: 'skills', name: 'Skills' },
+    { id: 'certifications', name: 'Certifications' },
+    { id: 'projects', name: 'Projects' },
+    { id: 'publications', name: 'Publications' },
+    { id: 'testimonials', name: 'Testimonials' },
+    { id: 'beyond-code', name: 'Beyond Code' },
+    { id: 'contact', name: 'Contact' },
 ];
 
 export default function CreativeNavbar({ currentSection, onNavigate, isVisible = true }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [hoveredItem, setHoveredItem] = useState(null);
 
     if (!isVisible) return null;
 
     return (
-        <header className="cosmic-header">
-
-
+        <header className="plain-header">
             {/* Mobile menu toggle */}
             <button
-                className={`cosmic-menu-toggle ${isMenuOpen ? 'open' : ''}`}
+                className={`menu-toggle ${isMenuOpen ? 'open' : ''}`}
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label="Toggle menu"
             >
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
 
-            {/* Navigation - floating saucers */}
-            <nav className={`cosmic-navbar ${isMenuOpen ? 'open' : ''}`}>
-                <div className="saucer-nav">
+            {/* Navigation */}
+            <nav className={`plain-navbar ${isMenuOpen ? 'open' : ''}`}>
+                <ul className="nav-list">
                     {navItems.map((item, index) => (
-                        <button
-                            key={item.id}
-                            className={`saucer ${currentSection === index ? 'active' : ''}`}
-                            onClick={(e) => { e.preventDefault(); onNavigate(index); setIsMenuOpen(false); }}
-                            onMouseEnter={() => setHoveredItem(index)}
-                            onMouseLeave={() => setHoveredItem(null)}
-                            aria-label={item.name}
-                            style={{ ['--delay']: `${index * 0.06}s` }}
-                        >
-                            <span className="saucer-dome">{item.name}</span>
-                            <div className="saucer-lights">
-                                <span></span><span></span><span></span>
-                            </div>
-                            <span className="saucer-label">{item.name}</span>
-                        </button>
+                        <li key={item.id} className="nav-item">
+                            <a
+                                href={`#${item.id}`}
+                                className={`nav-link ${currentSection === index ? 'active' : ''}`}
+                                onClick={(e) => { 
+                                    e.preventDefault(); 
+                                    onNavigate(index); 
+                                    setIsMenuOpen(false); 
+                                }}
+                            >
+                                {item.name}
+                            </a>
+                        </li>
                     ))}
-                </div>
+                </ul>
             </nav>
-
-            {/* Floating UFO decoration */}
-            <div className="floating-ufo">
-                <div className="ufo-body">
-                    <div className="ufo-dome"></div>
-                    <div className="ufo-lights">
-                        <span></span><span></span><span></span>
-                    </div>
-                </div>
-            </div>
         </header>
     );
 }

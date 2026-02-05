@@ -9,11 +9,11 @@ const testimonials = [
         title: 'MCA Student | Aspiring AI Engineer',
         subtitle: 'Exploring AI Solutions for Real-World Problems',
         avatar: '/images/Kavlemon.jpeg',
-        quote: `I had the pleasure of working with Sagnik during GSSOC and Hacktoberfest, where he was not only a Project Admin, Maintainer, and Mentor, but also an incredible guide throughout the process.
+        quote: `I had the pleasure of working with Sagnik during GSSoC and Hacktoberfest, where he was not only a Project Admin, Maintainer, and Mentor, but also an incredible guide throughout the process.
 
 From reviewing pull requests promptly to providing thoughtful feedback, Sagnik made every contribution a learning experience. His ability to manage multiple projects while still being approachable and encouraging speaks volumes about his leadership and mentoring skills.
 
-He supported me at every step — whether it was helping me understand the project structure or guiding me toward best practices in open source. His patience, professionalism, and consistency really stood out.
+He supported me at every step - whether it was helping me understand the project structure or guiding me toward best practices in open source. His patience, professionalism, and consistency really stood out.
 
 Grateful to have collaborated with him, and I'd highly recommend Sagnik to anyone looking for a dedicated mentor or a reliable collaborator in the tech and open-source community.`,
         context: 'GSSoC & Hacktoberfest'
@@ -22,16 +22,42 @@ Grateful to have collaborated with him, and I'd highly recommend Sagnik to anyon
         name: 'Akshay Kumar',
         title: 'Full-Stack Developer | AI & Cloud-Driven Products',
         subtitle: 'MERN | Google Cloud Innovator',
-        avatar: null, // No avatar provided
+        avatar: '/images/Akshay.jpg',
         quote: `I worked with Sagnik during GSSoC25 and Hacktoberfest 2025, where he maintained multiple repositories with great clarity, responsiveness, and leadership. He guided contributors patiently, set clear expectations, and offered constructive feedback that helped me learn and improve. His technical understanding and ability to manage large codebases made contributing a positive learning experience. I'd be happy to work with him again.`,
         context: 'GSSoC25 & Hacktoberfest 2025'
     }
 ];
 
 export default function Testimonials() {
+    const sectionRef = useRef(null);
     const [activeIndex, setActiveIndex] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
     const intervalRef = useRef(null);
+
+    // Scroll animation
+    useEffect(() => {
+        const section = sectionRef.current;
+        if (!section) return;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        section.classList.add('show-animate');
+                    } else {
+                        section.classList.remove('show-animate');
+                    }
+                });
+            },
+            {
+                threshold: 0.15,
+                rootMargin: '-50px 0px'
+            }
+        );
+
+        observer.observe(section);
+        return () => observer.disconnect();
+    }, []);
 
     // Auto-rotate testimonials
     useEffect(() => {
@@ -66,7 +92,7 @@ export default function Testimonials() {
     const currentTestimonial = testimonials[activeIndex];
 
     return (
-        <section className="testimonials" id="testimonials">
+        <section className="testimonials" id="testimonials" ref={sectionRef}>
             {/* Background Elements */}
             <div className="testimonials-bg">
                 <div className="quote-watermark">"</div>

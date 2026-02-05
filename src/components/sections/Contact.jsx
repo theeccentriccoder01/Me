@@ -1,6 +1,36 @@
+'use client';
+
+import { useEffect, useRef } from 'react';
+
 export default function Contact() {
+    const sectionRef = useRef(null);
+
+    useEffect(() => {
+        const section = sectionRef.current;
+        if (!section) return;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        section.classList.add('show-animate');
+                    } else {
+                        section.classList.remove('show-animate');
+                    }
+                });
+            },
+            {
+                threshold: 0.15,
+                rootMargin: '-50px 0px'
+            }
+        );
+
+        observer.observe(section);
+        return () => observer.disconnect();
+    }, []);
+
     return (
-        <section className="contact" id="contact">
+        <section className="contact" id="contact" ref={sectionRef}>
             <h2 className="heading">Contact <span>Me</span></h2>
 
             <form action="https://formspree.io/f/mwpoprde" method="POST">

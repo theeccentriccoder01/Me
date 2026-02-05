@@ -137,7 +137,7 @@
 .portal-cover {
     position: relative;
     width: 100%;
-    height: 200px;
+    height: 300px;
     overflow: hidden;
 }
 
@@ -146,6 +146,10 @@
     height: 100%;
     object-fit: cover;
     object-position: center;
+}
+
+.rapnation-portal .portal-cover {
+    height: 350px;
 }
 
 .portal-cover .cover-overlay {
@@ -360,6 +364,10 @@
     transition: all 0.3s ease;
 }
 
+.platform-link, .platform-link > span {
+color: #fff !important;
+}
+
 .platform-link i {
     font-size: 1.6rem;
 }
@@ -479,7 +487,7 @@
 .book-author {
     font-size: 1rem;
     color: rgba(255, 255, 255, 0.6);
-    font-style: italic;
+    /* font-style: italic; */
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -703,7 +711,7 @@
 }
 
 .rapnation-title {
-    color: #FFD700;
+    color: #f9b066;
     text-shadow:
         2px 2px 0 #8B0000,
         0 0 20px rgba(255, 215, 0, 0.5);
@@ -725,7 +733,7 @@
 .rapnation-tags .tag {
     background: rgba(255, 215, 0, 0.1);
     border-color: rgba(255, 215, 0, 0.3);
-    color: #FFD700;
+    color: #f9b066;
 }
 
 .rapnation-desc {
@@ -760,7 +768,7 @@
     height: 70px;
     border-radius: 50%;
     background: linear-gradient(135deg, #1a1a1a 0%, #333 50%, #1a1a1a 100%);
-    border: 3px solid #FFD700;
+    border: 3px solid #f9b066;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -777,14 +785,14 @@
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: #FFD700;
+    background: #f9b066;
 }
 
 .vinyl-disc i {
     position: relative;
     z-index: 1;
     font-size: 2rem;
-    color: #FFD700;
+    color: #f9b066;
 }
 
 .vinyl-link:hover .vinyl-disc {
@@ -817,7 +825,7 @@
 .vinyl-link span {
     font-size: 1.2rem;
     font-weight: 600;
-    color: #FFD700;
+    color: #f9b066;
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -939,8 +947,7 @@
 }
 
 .beyond-quote {
-    font-size: 1.8rem;
-    font-style: italic;
+    font-size: 1.6rem;
     color: var(--text-color);
     opacity: 0.7;
     max-width: 800px;

@@ -228,7 +228,7 @@ function RotatingSphere() {
             <sphereGeometry args={[0.6, 32, 32]} />
             <meshStandardMaterial
                 color="#ffffff"
-                emissive="rgb(121, 75, 15)"
+                emissive="rgb(255, 215, 4)"
                 emissiveIntensity={0.8}
                 roughness={0.15}
                 metalness={1}
@@ -392,7 +392,7 @@ function EduLinkUpScene() {
                 </Html>
             </Billboard>
             <Billboard follow={true} lockX={false} lockY={false} lockZ={false}>
-                <Html center style={{ pointerEvents: 'none', transform: 'translateY(270px) translateX(-270px)' }}>
+                <Html center style={{ pointerEvents: 'none', transform: 'translateY(-370px) translateX(-270px)' }}>
                     <div className="ecosystem-title">EduLinkUp Ecosystem</div>
                 </Html>
             </Billboard>
@@ -419,7 +419,7 @@ function EduLinkUpScene() {
             </group>
 
             {/* HTML Overlay */}
-            <Html position={[0, 0, 0]} fullscreen style={{ pointerEvents: 'none', zIndex: 10 }}>
+            <Html position={[-0.3, 0, 0]} fullscreen style={{ pointerEvents: 'none', zIndex: 10 }}>
                 <div className="edu-overlay-container">
                     {/* Left Panel - Interactive Problem/Solution */}
                     <div className="edu-content-left" style={{ pointerEvents: 'auto' }}>
@@ -631,6 +631,7 @@ function EduLinkUpScene() {
                         border-radius: 10px;
                         color: white;
                         font-family: 'Inter', sans-serif;
+                        transform: translateX(90px);
                     }
                     .edu-header h2 {
                         margin: 0;
@@ -695,6 +696,19 @@ function EduLinkUpScene() {
                         background: var(--link-color, #AD2831);
                         border-color: var(--link-color, #AD2831);
                         transform: scale(1.05);
+                    }
+
+                    /* Responsive: reset the right offset on small screens */
+                    @media (max-width: 900px) {
+                        .edu-content-right {
+                            transform: translateX(0);
+                            width: 100%;
+                        }
+                        .edu-overlay-container {
+                            flex-direction: column;
+                            align-items: stretch;
+                            gap: 1.5rem;
+                        }
                     }
                     .link-icon {
                         display: flex;

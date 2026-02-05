@@ -1,9 +1,46 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export default function Education() {
+    const sectionRef = useRef(null);
     const [showGoogleMedia, setShowGoogleMedia] = useState(false);
+    const [modalImage, setModalImage] = useState(null);
+    const [modalAlt, setModalAlt] = useState('');
+
+    useEffect(() => {
+        const section = sectionRef.current;
+        if (!section) return;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        section.classList.add('show-animate');
+                    } else {
+                        section.classList.remove('show-animate');
+                    }
+                });
+            },
+            {
+                threshold: 0.15,
+                rootMargin: '-50px 0px'
+            }
+        );
+
+        observer.observe(section);
+        return () => observer.disconnect();
+    }, []);
+
+    const openModal = (src, alt) => {
+        setModalImage(src);
+        setModalAlt(alt);
+    };
+
+    const closeModal = () => {
+        setModalImage(null);
+        setModalAlt('');
+    };
 
     const toggleMedia = () => {
         setShowGoogleMedia(!showGoogleMedia);
@@ -104,6 +141,7 @@ export default function Education() {
             title: 'Campus Ambassador',
             company: 'DevTown',
             certLink: 'https://1drv.ms/b/c/6cdf25a705dcdf9c/Edlwf6meLS9NkTKoh31GyxQBJwSsfVNPR201QMSuYiR1mg?e=2vvnyt',
+            certLabel: 'View Offer Letter',
             description: `· Actively promoted DevTown\'s free certified bootcamps and paid training programs focused on in-demand software development technologies.
 · My responsibilities included sharing updates through social media groups, channels, and direct outreach within my college, encouraging participation among peers and expanding DevTown\'s reach within my network.`
         },
@@ -158,7 +196,7 @@ export default function Education() {
                     {item.company}
                     {item.certLink && (
                         <a href={item.certLink} target="_blank" rel="noopener noreferrer" className="cert-link" style={{ color: 'rgb(145, 0, 0)', marginLeft: '10px' }}>
-                            <i className="bx bx-link" style={{ color: 'rgb(145, 0, 0)' }}></i> View Certificate
+                            <i className="bx bx-link" style={{ color: 'rgb(145, 0, 0)' }}></i> {item.certLabel || 'View Certificate'}
                         </a>
                     )}
                 </h6>
@@ -174,7 +212,12 @@ export default function Education() {
                         </div>
                         <div className={`media-gallery ${showGoogleMedia ? '' : 'hidden'}`}>
                             <div className="media-grid">
-                                <img src={item.mediaImage} alt="Onboarding Kit" className="media-item" />
+                                <div className="media-item-wrapper" onClick={() => openModal(item.mediaImage, item.mediaLabel)}>
+                                    <img src={item.mediaImage} alt="Onboarding Kit" className="media-item" />
+                                    <div className="media-hover-overlay">
+                                        <span>Click to View</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </>
@@ -184,7 +227,7 @@ export default function Education() {
     );
 
     return (
-        <section className="education" id="education">
+        <section className="education" id="education" ref={sectionRef}>
             <h2 className="heading">My <span>Journey</span></h2>
 
             <div className="education-row">
@@ -209,6 +252,19 @@ export default function Education() {
                     </div>
                 </div>
             </div>
+
+            {/* Image Modal */}
+            {modalImage && (
+                <div className="image-modal" onClick={closeModal}>
+                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                        <button className="modal-close" onClick={closeModal}>
+                            <i className="bx bx-x"></i>
+                        </button>
+                        <img src={modalImage} alt={modalAlt} className="modal-image" />
+                        <p className="modal-caption">{modalAlt}</p>
+                    </div>
+                </div>
+            )}
         </section>
     );
 }
