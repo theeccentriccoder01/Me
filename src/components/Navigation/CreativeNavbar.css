@@ -1,0 +1,534 @@
+/* Cosmic Header Styles */
+.cosmic-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1rem 2rem;
+    background: linear-gradient(180deg, rgba(2, 1, 1, 0.95) 0%, rgba(2, 1, 1, 0.7) 70%, transparent 100%);
+    backdrop-filter: blur(10px);
+    pointer-events: none;
+}
+
+.cosmic-header > * {
+    pointer-events: auto;
+}
+
+/* Logo */
+.cosmic-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    position: relative;
+}
+
+.logo-planet {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #AD2831 0%, #ff6b6b 50%, #AD2831 100%);
+    box-shadow:
+        0 0 20px rgba(173, 40, 49, 0.6),
+        0 0 40px rgba(173, 40, 49, 0.3),
+        inset -5px -5px 15px rgba(0, 0, 0, 0.3),
+        inset 5px 5px 15px rgba(255, 255, 255, 0.1);
+    animation: planetPulse 3s ease-in-out infinite;
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #fff 0%, #AD2831 50%, #fff 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 4s ease-in-out infinite;
+    font-family: 'Poppins', sans-serif;
+}
+
+.logo-glow {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(173, 40, 49, 0.4) 0%, transparent 70%);
+    pointer-events: none;
+    animation: glowPulse 2s ease-in-out infinite;
+}
+
+@keyframes planetPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes gradientShift {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes glowPulse {
+
+    0%,
+    100% {
+        opacity: 0.5;
+        transform: translateY(-50%) scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(-50%) scale(1.2);
+    }
+}
+
+/* Mobile Menu Toggle */
+.cosmic-menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.cosmic-menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background: #AD2831;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(173, 40, 49, 0.5);
+}
+
+.cosmic-menu-toggle.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.cosmic-menu-toggle.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.cosmic-menu-toggle.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* Navbar */
+.cosmic-navbar {
+    position: fixed;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+}
+
+.nav-orbit {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Saucer nav - floating hi-tech buttons */
+.saucer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2.0rem;
+    align-items: center;
+    perspective: 1000px;
+}
+
+.saucer {
+    --size: 96px;
+    /* Slightly wider for text */
+    width: var(--size);
+    height: calc(var(--size) * 0.52);
+    position: relative;
+    background:
+        radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.1) 0%, transparent 60%),
+        linear-gradient(180deg, rgba(20, 10, 10, 0.9), rgba(5, 5, 5, 0.95));
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 1px solid rgba(173, 40, 49, 0.2);
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.7),
+        0 0 15px rgba(173, 40, 49, 0.1),
+        inset 0 1px 1px rgba(255, 255, 255, 0.15);
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transform-origin: center;
+    animation: saucerFloat 4.5s ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+    backdrop-filter: blur(8px);
+    overflow: visible;
+}
+
+/* Digital Grid/Noise Overlay */
+.saucer::before {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border-radius: 50%;
+    background-image:
+        linear-gradient(rgba(173, 40, 49, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(173, 40, 49, 0.1) 1px, transparent 1px);
+    background-size: 8px 8px;
+    opacity: 0.2;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Sparkling Rings */
+.saucer::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    height: 120%;
+    background: conic-gradient(from 0deg, transparent 0%, rgba(173, 40, 49, 0.0) 20%, rgba(255, 255, 255, 0.4) 25%, rgba(173, 40, 49, 0.0) 30%, transparent 100%);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s;
+    animation: ringSpin 4s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes ringSpin {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+.saucer:hover::after {
+    opacity: 0.5;
+}
+
+.saucer-dome {
+    position: absolute;
+    top: -25%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 70%;
+    border-radius: 40%;
+    background:
+        linear-gradient(180deg, rgba(173, 40, 49, 0.2), rgba(173, 40, 49, 0.05)),
+        radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.8), transparent 40%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.62rem;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    color: #ffd6d9;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 10px rgba(173, 40, 49, 0.8), 0 0 20px rgba(173, 40, 49, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: inset 0 0 15px rgba(173, 40, 49, 0.2);
+    z-index: 2;
+    overflow: hidden;
+    padding-top: 6px;
+    /* visual centering correction */
+}
+
+/* Holographic scanline in dome */
+.saucer-dome::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
+    transform: translateY(-100%);
+    animation: scanline 3s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes scanline {
+
+    0%,
+    100% {
+        transform: translateY(-150%);
+    }
+
+    50% {
+        transform: translateY(150%);
+    }
+}
+
+
+
+.saucer:hover {
+    transform: translateY(-6px) scale(1.05);
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.8),
+        0 0 25px rgba(173, 40, 49, 0.3),
+        inset 0 0 15px rgba(173, 40, 49, 0.2);
+    background: linear-gradient(180deg, rgba(40, 10, 10, 0.95), rgba(10, 5, 5, 0.98));
+    border-color: rgba(173, 40, 49, 0.6);
+}
+
+.saucer.active {
+    transform: translateY(-8px) scale(1.08);
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.9),
+        0 0 35px rgba(173, 40, 49, 0.5),
+        inset 0 0 20px rgba(173, 40, 49, 0.3);
+    border-color: #AD2831;
+}
+
+.saucer.active .saucer-dome {
+    color: #fff;
+    text-shadow: 0 0 15px #AD2831, 0 0 30px #AD2831;
+}
+
+@keyframes saucerFloat {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-5px) rotate(0.5deg);
+    }
+
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+}
+
+/* Lights Container */
+.saucer-lights {
+    position: absolute;
+    bottom: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 4;
+}
+
+.saucer-lights span {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #ff6b6b;
+    box-shadow: 0 0 8px #ff6b6b;
+    opacity: 0.6;
+}
+
+.saucer:hover .saucer-lights span {
+    background: #fff;
+    box-shadow: 0 0 10px #fff;
+    opacity: 1;
+}
+
+.saucer-lights span:nth-child(1) {
+    animation: blink 1.2s infinite;
+}
+
+.saucer-lights span:nth-child(2) {
+    animation: blink 1.2s infinite 0.2s;
+}
+
+.saucer-lights span:nth-child(3) {
+    animation: blink 1.2s infinite 0.4s;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 0.3;
+        transform: scale(0.8);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.5);
+    }
+}
+
+/* Remove hover label since text is now in dome */
+.saucer-label {
+    display: none;
+}
+
+/* Floating UFO */
+.floating-ufo {
+    display: none;
+}
+
+.ufo-body {
+    position: relative;
+    width: 50px;
+    height: 20px;
+    background: linear-gradient(180deg, #666 0%, #333 100%);
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.ufo-dome {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 25px;
+    height: 15px;
+    background: linear-gradient(180deg, rgba(173, 40, 49, 0.5) 0%, rgba(173, 40, 49, 0.8) 100%);
+    border-radius: 50% 50% 0 0;
+    box-shadow: 0 0 10px rgba(173, 40, 49, 0.5);
+}
+
+.ufo-lights {
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+
+.ufo-lights span {
+    width: 6px;
+    height: 6px;
+    background: #AD2831;
+    border-radius: 50%;
+    animation: ufoLight 0.5s ease-in-out infinite alternate;
+    box-shadow: 0 0 10px #AD2831;
+}
+
+.ufo-lights span:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.ufo-lights span:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+@keyframes ufoFloat {
+
+    0%,
+    100% {
+        transform: translateY(-50%) translateX(0);
+    }
+
+    25% {
+        transform: translateY(-60%) translateX(10px);
+    }
+
+    75% {
+        transform: translateY(-40%) translateX(-10px);
+    }
+}
+
+@keyframes ufoLight {
+    from {
+        opacity: 0.5;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Mobile Styles */
+@media (max-width: 900px) {
+    .cosmic-menu-toggle {
+        display: flex;
+    }
+
+    .cosmic-navbar {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: rgba(2, 1, 1, 0.98);
+        backdrop-filter: blur(20px);
+        padding: 5rem 2rem 2rem;
+        transition: right 0.4s ease;
+        border-left: 1px solid rgba(173, 40, 49, 0.3);
+    }
+
+    .cosmic-navbar.open {
+        right: 0;
+    }
+
+    .nav-orbit {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .saucer-nav {
+        flex-direction: column;
+        width: 100%;
+        gap: 1.5rem;
+    }
+
+    .saucer {
+        --size: 110px;
+        /* larger tap targets on mobile */
+    }
+
+    .nav-planet {
+        width: 100%;
+        padding: 1rem;
+        border-radius: 10px;
+    }
+
+    .floating-ufo {
+        display: none;
+    }
+
+    .logo-text {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .cosmic-header {
+        padding: 0.75rem 1rem;
+    }
+
+    .logo-planet {
+        width: 30px;
+        height: 30px;
+    }
+
+    .logo-text {
+        font-size: 1rem;
+    }
+}

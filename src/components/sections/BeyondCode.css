@@ -1,0 +1,1058 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   BEYOND CODE SECTION STYLES
+   Unique visual themes for each interest portal
+═══════════════════════════════════════════════════════════════════════════ */
+
+.beyond-code {
+    min-height: 100vh;
+    padding: 8rem 5% 4rem;
+    background: linear-gradient(180deg, var(--bg-color) 0%, #0d0805 50%, var(--bg-color) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HEADER STYLES
+═══════════════════════════════════════════════════════════════ */
+
+.beyond-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 10;
+}
+
+.beyond-title {
+    font-size: 5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    letter-spacing: 0.1em;
+}
+
+.beyond-title span {
+    color: var(--main-color);
+    position: relative;
+}
+
+.beyond-title span::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--main-color), transparent);
+}
+
+.beyond-subtitle {
+    font-size: 1.8rem;
+    color: var(--text-color);
+    opacity: 0.7;
+    font-style: italic;
+    letter-spacing: 0.2em;
+}
+
+.beyond-divider {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.beyond-divider::before,
+.beyond-divider::after {
+    content: '';
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--main-color), transparent);
+}
+
+.divider-star {
+    color: var(--main-color);
+    font-size: 1.5rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+/* Personality Statement */
+.personality-statement {
+    max-width: 800px;
+    margin: 2.5rem auto 0;
+    font-size: 1.6rem;
+    line-height: 1.8;
+    color: var(--text-color);
+    opacity: 0.85;
+    text-align: center;
+}
+
+.personality-statement .highlight {
+    color: var(--main-color);
+    font-weight: 600;
+    font-style: italic;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PORTALS CONTAINER
+═══════════════════════════════════════════════════════════════ */
+
+.portals-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BASE PORTAL STYLES
+═══════════════════════════════════════════════════════════════ */
+
+.portal {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+
+.portal:hover {
+    transform: translateY(-5px);
+}
+
+/* Cover Image Banner (Social Media Style) */
+.portal-cover {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.portal-cover .cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.portal-cover .cover-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+}
+
+.portal-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.portal-content {
+    position: relative;
+    z-index: 10;
+    padding: 3rem;
+}
+
+.portal-header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    margin-top: -60px;
+    /* Overlap with cover */
+}
+
+.portal-logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    background: var(--bg-color);
+}
+
+.portal-info {
+    flex: 1;
+    padding-top: 50px;
+    /* Align with logo bottom */
+}
+
+.portal-title {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.portal-tagline {
+    font-size: 1.4rem;
+    opacity: 0.8;
+    margin-bottom: 0.8rem;
+}
+
+.portal-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.portal-tags .tag {
+    font-size: 1rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-color);
+}
+
+.portal-description {
+    font-size: 1.5rem;
+    line-height: 1.8;
+    color: var(--text-color);
+    opacity: 0.9;
+    margin-bottom: 2rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   THE DISCLOSURE TEAM - Dark Brown Universe Theme
+═══════════════════════════════════════════════════════════════ */
+
+.disclosure-portal {
+    background: linear-gradient(135deg, #1a0f08 0%, #2d1810 50%, #1a0d08 100%);
+    border: 1px solid rgba(139, 90, 43, 0.3);
+    box-shadow:
+        0 0 40px rgba(139, 90, 43, 0.2),
+        inset 0 0 60px rgba(255, 200, 100, 0.03);
+}
+
+.disclosure-portal .cover-overlay {
+    background: linear-gradient(to bottom, transparent 0%, #1a0f08 100%);
+}
+
+.disclosure-portal .stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image:
+        radial-gradient(2px 2px at 20px 30px, rgba(255, 220, 180, 0.8), transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255, 200, 150, 0.6), transparent),
+        radial-gradient(1px 1px at 90px 40px, rgba(255, 220, 180, 0.8), transparent),
+        radial-gradient(2px 2px at 160px 120px, rgba(255, 200, 150, 0.7), transparent),
+        radial-gradient(1px 1px at 230px 80px, rgba(255, 220, 180, 0.8), transparent),
+        radial-gradient(2px 2px at 300px 150px, rgba(255, 200, 150, 0.5), transparent),
+        radial-gradient(1px 1px at 400px 60px, rgba(255, 220, 180, 0.8), transparent),
+        radial-gradient(2px 2px at 500px 180px, rgba(255, 200, 150, 0.6), transparent),
+        radial-gradient(1px 1px at 600px 100px, rgba(255, 220, 180, 0.8), transparent);
+    animation: twinkle 4s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.disclosure-portal .cosmic-glow {
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(139, 90, 43, 0.2) 0%, transparent 70%);
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(-20px, 20px);
+    }
+}
+
+.disclosure-title {
+    color: #d4a76a;
+    text-shadow: 0 0 20px rgba(212, 167, 106, 0.5);
+}
+
+.disclosure-logo {
+    border-color: rgba(212, 167, 106, 0.5);
+    box-shadow: 0 0 30px rgba(139, 90, 43, 0.4);
+}
+
+/* Disclosure Platform Links */
+.disclosure-platforms {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.platform-section {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid rgba(139, 90, 43, 0.2);
+}
+
+.platform-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.section-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.platform-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.platform-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.platform-link i {
+    font-size: 1.6rem;
+}
+
+.platform-link.pinterest {
+    background: linear-gradient(135deg, #e60023 0%, #bd081c 100%);
+}
+
+.platform-link.instagram {
+    background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
+}
+
+.platform-link.telegram {
+    background: linear-gradient(135deg, #0088cc 0%, #00a0dc 100%);
+}
+
+.platform-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.follower-count {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.2rem 0.6rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+/* Books Section - Large Grid with Names */
+.books-section {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    padding: 2rem;
+    border: 1px solid rgba(139, 90, 43, 0.2);
+}
+
+.books-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    font-size: 1.6rem;
+    color: #d4a76a;
+    font-weight: 600;
+}
+
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 2rem;
+}
+
+.book-card-large {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.book-card-large:hover {
+    transform: translateY(-8px);
+}
+
+.book-cover-wrapper {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.book-cover-large {
+    width: 140px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(139, 90, 43, 0.2);
+    transition: all 0.3s ease;
+}
+
+.book-card-large:hover .book-cover-large {
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.6),
+        0 0 30px rgba(212, 167, 106, 0.3);
+}
+
+.book-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(212, 167, 106, 0.3) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.book-glow.active {
+    opacity: 1;
+}
+
+.book-info {
+    max-width: 150px;
+}
+
+.book-title {
+    font-size: 1.2rem;
+    color: #d4a76a;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    line-height: 1.3;
+}
+
+.book-author {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-style: italic;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   भारतवर्ष का इतिहास - Vedic Theme
+═══════════════════════════════════════════════════════════════ */
+
+.bharatvarsh-portal {
+    background: linear-gradient(135deg, #2d1810 0%, #4a2c1a 50%, #1a0d08 100%);
+    border: 2px solid rgba(255, 153, 51, 0.3);
+    box-shadow:
+        0 0 40px rgba(255, 153, 51, 0.15),
+        inset 0 0 60px rgba(255, 215, 0, 0.05);
+}
+
+.bharatvarsh-portal .cover-overlay.bharatvarsh-overlay {
+    background: linear-gradient(to bottom, transparent 0%, #2d1810 100%);
+}
+
+.bharatvarsh-portal .mandala-pattern {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' stroke='%23FFD700' stroke-width='0.5' fill='none'/%3E%3Ccircle cx='50' cy='50' r='30' stroke='%23FFD700' stroke-width='0.5' fill='none'/%3E%3Ccircle cx='50' cy='50' r='20' stroke='%23FFD700' stroke-width='0.5' fill='none'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+}
+
+.bharatvarsh-portal .saffron-glow {
+    position: absolute;
+    top: -30%;
+    left: -10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 153, 51, 0.2) 0%, transparent 70%);
+}
+
+.bharatvarsh-title {
+    color: #FFD700;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    font-family: 'Noto Sans Devanagari', sans-serif;
+}
+
+.bharatvarsh-logo {
+    border-color: rgba(255, 215, 0, 0.5);
+    box-shadow: 0 0 30px rgba(255, 153, 51, 0.3);
+}
+
+.devanagari {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    color: #FF9933;
+}
+
+.bharatvarsh-tags .tag {
+    background: rgba(255, 153, 51, 0.2);
+    border-color: rgba(255, 215, 0, 0.3);
+}
+
+.bharatvarsh-desc {
+    border-left: 3px solid #FF9933;
+    padding-left: 1.5rem;
+}
+
+/* Mahabharat Section - Classier Styling */
+.mahabharat-section {
+    margin-top: 2rem;
+}
+
+.mahabharat-heading {
+    text-align: center;
+    font-size: 2.2rem;
+    color: #FFD700;
+    margin-bottom: 2.5rem;
+    font-weight: 600;
+}
+
+.heading-english {
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 400;
+}
+
+.sanskrit-accent {
+    color: #FF9933;
+    margin: 0 0.5rem;
+}
+
+.mahabharat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2.5rem;
+}
+
+.mahabharat-card {
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.mahabharat-card:hover {
+    transform: translateY(-8px);
+}
+
+.mahabharat-cover-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 1.2rem;
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.4),
+        0 0 20px rgba(255, 153, 51, 0.1);
+}
+
+.mahabharat-cover {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.mahabharat-card:hover .mahabharat-cover {
+    transform: scale(1.05);
+}
+
+.mahabharat-shine {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.mahabharat-card:hover .mahabharat-shine {
+    left: 100%;
+}
+
+.mahabharat-info {
+    padding: 0 0.5rem;
+}
+
+.mahabharat-title {
+    font-size: 1.5rem;
+    color: #FFD700;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    font-family: 'Georgia', serif;
+}
+
+.mahabharat-desc-text {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-style: italic;
+    letter-spacing: 0.05em;
+}
+
+/* Subtle social links */
+.bharatvarsh-pages {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 153, 51, 0.2);
+}
+
+.subtle-link {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 153, 51, 0.1);
+    color: #FF9933;
+    font-size: 1.8rem;
+    transition: all 0.3s ease;
+    opacity: 0.6;
+}
+
+.subtle-link:hover {
+    opacity: 1;
+    background: rgba(255, 153, 51, 0.2);
+    transform: scale(1.1);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   THE RAP NATION - Urban Hip Hop Theme
+═══════════════════════════════════════════════════════════════ */
+
+.rapnation-portal {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0d0d0d 100%);
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    box-shadow:
+        0 0 40px rgba(255, 215, 0, 0.1),
+        inset 0 0 60px rgba(139, 0, 0, 0.05);
+}
+
+.rapnation-portal .cover-overlay.rapnation-overlay {
+    background: linear-gradient(to bottom, transparent 0%, #0a0a0a 100%);
+}
+
+.rapnation-portal .graffiti-texture {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.03;
+    background: repeating-linear-gradient(45deg,
+            transparent,
+            transparent 10px,
+            rgba(255, 215, 0, 0.1) 10px,
+            rgba(255, 215, 0, 0.1) 20px);
+}
+
+.rapnation-portal .spotlight-effect {
+    position: absolute;
+    top: -100px;
+    right: 10%;
+    width: 200px;
+    height: 400px;
+    background: linear-gradient(180deg, rgba(255, 215, 0, 0.1) 0%, transparent 100%);
+    transform: rotate(-15deg);
+}
+
+.rapnation-title {
+    color: #FFD700;
+    text-shadow:
+        2px 2px 0 #8B0000,
+        0 0 20px rgba(255, 215, 0, 0.5);
+    font-family: 'Impact', sans-serif;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.rapnation-logo {
+    border-color: rgba(255, 215, 0, 0.5);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+}
+
+.rapnation-tagline {
+    color: #8B0000;
+    font-weight: 600;
+}
+
+.rapnation-tags .tag {
+    background: rgba(255, 215, 0, 0.1);
+    border-color: rgba(255, 215, 0, 0.3);
+    color: #FFD700;
+}
+
+.rapnation-desc {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Vinyl Links */
+.rapnation-platforms {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.vinyl-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: transform 0.3s ease;
+}
+
+.vinyl-link:hover {
+    transform: scale(1.1);
+}
+
+.vinyl-disc {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1a1a1a 0%, #333 50%, #1a1a1a 100%);
+    border: 3px solid #FFD700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow:
+        0 0 20px rgba(255, 215, 0, 0.2),
+        inset 0 0 20px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.vinyl-disc::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #FFD700;
+}
+
+.vinyl-disc i {
+    position: relative;
+    z-index: 1;
+    font-size: 2rem;
+    color: #FFD700;
+}
+
+.vinyl-link:hover .vinyl-disc {
+    animation: spin 1s linear infinite;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+}
+
+.vinyl-disc.github {
+    border-color: #fff;
+}
+
+.vinyl-disc.github i {
+    color: #fff;
+}
+
+.vinyl-disc.github::before {
+    background: #fff;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.vinyl-link span {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #FFD700;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   THE SAFARI - Nature Wildlife Theme
+═══════════════════════════════════════════════════════════════ */
+
+.safari-portal {
+    background: linear-gradient(135deg, #0a1f0a 0%, #1a3a1a 50%, #0d2010 100%);
+    border: 2px solid rgba(34, 139, 34, 0.3);
+    box-shadow:
+        0 0 40px rgba(34, 139, 34, 0.15),
+        inset 0 0 60px rgba(255, 107, 53, 0.05);
+}
+
+.safari-portal .cover-overlay.safari-overlay {
+    background: linear-gradient(to bottom, transparent 0%, #0a1f0a 100%);
+}
+
+.safari-portal .jungle-vines {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M10 90 Q30 60 20 30 Q25 10 40 20' stroke='%2322B22' stroke-width='2' fill='none'/%3E%3Cpath d='M80 90 Q60 70 70 40 Q75 20 90 30' stroke='%2322B22' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+    background-size: 150px 150px;
+}
+
+.safari-portal .nature-glow {
+    position: absolute;
+    bottom: -30%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 107, 53, 0.15) 0%, transparent 70%);
+}
+
+.safari-title {
+    color: #228B22;
+    text-shadow: 0 0 20px rgba(34, 139, 34, 0.5);
+}
+
+.safari-logo {
+    border-color: rgba(34, 139, 34, 0.5);
+    box-shadow: 0 0 30px rgba(34, 139, 34, 0.3);
+}
+
+.safari-tagline {
+    color: #FF6B35;
+    font-weight: 600;
+}
+
+.safari-tags .tag {
+    background: rgba(34, 139, 34, 0.2);
+    border-color: rgba(34, 139, 34, 0.3);
+}
+
+.safari-desc {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Safari Links */
+.safari-platforms {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.safari-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: transform 0.3s ease;
+}
+
+.safari-link:hover {
+    transform: translateY(-5px);
+}
+
+.leaf-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50% 10% 50% 10%;
+    background: linear-gradient(135deg, #228B22 0%, #32CD32 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 20px rgba(34, 139, 34, 0.4);
+    transition: all 0.3s ease;
+}
+
+.safari-link:hover .leaf-icon {
+    box-shadow: 0 8px 30px rgba(34, 139, 34, 0.6);
+}
+
+.leaf-icon i {
+    font-size: 2rem;
+    color: white;
+}
+
+.safari-link span {
+    font-size: 1.3rem;
+    color: #228B22;
+    font-weight: 500;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FOOTER QUOTE
+═══════════════════════════════════════════════════════════════ */
+
+.beyond-footer {
+    text-align: center;
+    margin-top: 5rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.beyond-quote {
+    font-size: 1.8rem;
+    font-style: italic;
+    color: var(--text-color);
+    opacity: 0.7;
+    max-width: 800px;
+    margin: 0 auto 1rem;
+    line-height: 1.6;
+}
+
+.quote-author {
+    font-size: 1.4rem;
+    color: var(--main-color);
+    font-weight: 500;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE DESIGN
+═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+    .beyond-code {
+        padding: 6rem 4% 3rem;
+    }
+
+    .beyond-title {
+        font-size: 3.5rem;
+    }
+
+    .beyond-subtitle {
+        font-size: 1.4rem;
+    }
+
+    .personality-statement {
+        font-size: 1.4rem;
+    }
+
+    .portal-cover {
+        height: 150px;
+    }
+
+    .portal-content {
+        padding: 2rem;
+    }
+
+    .portal-header {
+        flex-direction: column;
+        text-align: center;
+        margin-top: -50px;
+    }
+
+    .portal-info {
+        padding-top: 0;
+    }
+
+    .portal-logo {
+        width: 80px;
+        height: 80px;
+    }
+
+    .portal-title {
+        font-size: 2rem;
+    }
+
+    .portal-description {
+        font-size: 1.3rem;
+    }
+
+    .disclosure-platforms {
+        grid-template-columns: 1fr;
+    }
+
+    .books-grid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .book-cover-large {
+        width: 120px;
+        height: 170px;
+    }
+
+    .mahabharat-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .rapnation-platforms {
+        gap: 1.5rem;
+    }
+
+    .vinyl-disc {
+        width: 55px;
+        height: 55px;
+    }
+
+    .safari-platforms {
+        gap: 2rem;
+    }
+
+    .beyond-quote {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .mahabharat-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+
+    .mahabharat-cover {
+        height: 220px;
+    }
+
+    .books-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

@@ -1,0 +1,421 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   PUBLICATIONS SECTION STYLES
+   Academic, scholarly design for research papers
+═══════════════════════════════════════════════════════════════════════════ */
+
+.publications {
+    min-height: 100vh;
+    padding: 8rem 5% 6rem;
+    background: linear-gradient(180deg, var(--bg-color) 0%, #080812 50%, var(--bg-color) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background Elements */
+.publications-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.grid-pattern {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
+.accent-line {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, var(--main-color), transparent);
+    opacity: 0.2;
+}
+
+/* Header */
+.publications-header {
+    text-align: center;
+    margin-bottom: 5rem;
+    position: relative;
+    z-index: 10;
+}
+
+.publications .section-label {
+    display: inline-block;
+    font-size: 1.2rem;
+    color: var(--main-color);
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    margin-bottom: 1rem;
+}
+
+.publications .section-label::before,
+.publications .section-label::after {
+    content: '—';
+    margin: 0 1rem;
+    opacity: 0.5;
+}
+
+.publications-title {
+    font-size: 4.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.publications-title span {
+    color: var(--main-color);
+}
+
+.publications-subtitle {
+    font-size: 1.6rem;
+    color: var(--text-color);
+    opacity: 0.6;
+    font-style: italic;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Publications Grid */
+.publications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+/* Publication Card */
+.publication-card {
+    position: relative;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 2.5rem;
+    transition: all 0.4s ease;
+    overflow: hidden;
+}
+
+.publication-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(var(--main-color-rgb, 0, 255, 255), 0.3);
+}
+
+.publication-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--main-color), #8a2be2);
+}
+
+.publication-card.conference::before {
+    background: linear-gradient(90deg, #00d4ff, #0088cc);
+}
+
+.publication-card.book-chapter::before {
+    background: linear-gradient(90deg, #8a2be2, #da70d6);
+}
+
+.card-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(circle, rgba(var(--main-color-rgb, 0, 255, 255), 0.05) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.publication-card:hover .card-glow {
+    opacity: 1;
+}
+
+/* Card Header */
+.pub-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.pub-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--main-color) 0%, #8a2be2 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pub-icon i {
+    font-size: 2rem;
+    color: var(--bg-color);
+}
+
+.pub-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.3rem;
+}
+
+.pub-type {
+    font-size: 1rem;
+    color: var(--main-color);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+}
+
+.pub-year {
+    font-size: 1.4rem;
+    color: var(--text-color);
+    opacity: 0.6;
+    font-weight: 700;
+}
+
+/* Card Content */
+.pub-content {
+    margin-bottom: 2rem;
+}
+
+.pub-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 0.8rem;
+    line-height: 1.3;
+}
+
+.pub-subtitle {
+    font-size: 1.4rem;
+    color: var(--text-color);
+    opacity: 0.8;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.pub-venue {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+}
+
+.pub-venue i {
+    font-size: 2rem;
+    color: var(--main-color);
+    margin-top: 0.2rem;
+}
+
+.pub-venue div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.venue-name {
+    font-size: 1.3rem;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.venue-publisher {
+    font-size: 1.1rem;
+    color: var(--main-color);
+    opacity: 0.8;
+}
+
+/* Highlights */
+.pub-highlights {
+    margin-top: 1.5rem;
+}
+
+.highlights-title {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+    opacity: 0.7;
+}
+
+.highlights-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.highlights-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    font-size: 1.3rem;
+    color: var(--text-color);
+    opacity: 0.85;
+}
+
+.highlights-list li i {
+    color: var(--main-color);
+    font-size: 1.4rem;
+    margin-top: 0.1rem;
+    flex-shrink: 0;
+}
+
+/* Card Footer */
+.pub-footer {
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pub-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 1.8rem;
+    background: transparent;
+    border: 2px solid var(--main-color);
+    border-radius: 30px;
+    color: var(--main-color);
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.pub-link:hover {
+    background: var(--main-color);
+    color: var(--bg-color);
+    box-shadow: 0 5px 20px rgba(var(--main-color-rgb, 0, 255, 255), 0.3);
+}
+
+.pub-link i {
+    font-size: 1.5rem;
+}
+
+/* Stats Bar */
+.publications-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 5rem;
+    padding: 2rem 3rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 10;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--main-color);
+}
+
+.stat-label {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    opacity: 0.6;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.stat-divider {
+    width: 1px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE DESIGN
+═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+    .publications {
+        padding: 6rem 4% 4rem;
+    }
+
+    .publications-title {
+        font-size: 3rem;
+    }
+
+    .publications-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .publication-card {
+        padding: 2rem;
+    }
+
+    .pub-title {
+        font-size: 1.8rem;
+    }
+
+    .pub-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .publications-stats {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .stat-divider {
+        width: 50px;
+        height: 1px;
+    }
+}
+
+@media (max-width: 540px) {
+    .publications-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pub-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .pub-meta {
+        align-items: flex-start;
+    }
+}
