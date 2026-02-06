@@ -392,7 +392,7 @@ function EduLinkUpScene() {
                 </Html>
             </Billboard>
             <Billboard follow={true} lockX={false} lockY={false} lockZ={false}>
-                <Html center style={{ pointerEvents: 'none', transform: 'translateY(-370px) translateX(-270px)' }}>
+                <Html center style={{ pointerEvents: 'none', transform: 'translateY(-360px) translateX(-270px)' }}>
                     <div className="ecosystem-title">EduLinkUp Ecosystem</div>
                 </Html>
             </Billboard>

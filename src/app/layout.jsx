@@ -14,7 +14,7 @@ export const metadata = {
     description: 'Portfolio of Sagnik Chakraborty - Front-End Developer, AI/ML enthusiast, and technology fanatic.',
     icons: {
         icon: '/favicon/favicon.ico',
-        apple: '/favicon/apple-touch-icon.png',
+        apple: '/favicon/apple-icon.png',
     },
 };
 
@@ -22,10 +22,13 @@ export default function RootLayout({ children }) {
     return (
         <html lang="en" className={poppins.variable}>
             <head>
-                <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
-                <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
-                <link rel="manifest" href="/favicon/site.webmanifest" />
+                <link rel="icon" href="/favicon/favicon.ico" />
+                <link rel="icon" type="image/png" sizes="192x192" href="/favicon/web-app-manifest-192x192.png" />
+                <link rel="icon" type="image/png" sizes="512x512" href="/favicon/web-app-manifest-512x512.png" />
+                <link rel="apple-touch-icon" href="/favicon/apple-icon.png" />
+                <link rel="manifest" href="/favicon/manifest.json" />
                 <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+                <meta name="p:domain_verify" content="3a5d927052ec99de85b7be0a0103b087"/>
             </head>
             <body>
                 {children}
