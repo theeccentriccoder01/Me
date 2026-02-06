@@ -551,6 +551,41 @@ span {
     flex: 0 0 45%;
 }
 
+/* Prevent experience column from shrinking too small; force wrap early
+   so volunteering stacks below when viewport is narrow (~840px). */
+.exp-col {
+    min-width: 300px;
+}
+
+/* If container becomes narrower than two columns allow, stack vertically
+   at ~840px to avoid overly-narrow cards. */
+@media (max-width: 840px) {
+    .education .education-row {
+        flex-direction: column;
+        gap: 2rem;
+        align-items: stretch;
+    }
+
+    .exp-col,
+    .edu-col {
+        flex: 0 0 100%;
+    }
+
+    /* Make content cards take full width and avoid internal shrinking */
+    .education-content .content {
+        min-width: 250px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Slightly reduce left offset for timeline logo on small screens */
+    /* .timeline-logo {
+        left: -3rem;
+        width: 3rem;
+        height: 3rem;
+    } */
+}
+
 .education-box .education-content {
     position: relative;
     padding-left: 2rem;
@@ -1747,6 +1782,7 @@ span {
 }
 
 .skills h2 {
+    position: relative;
     display: inline-block;
     left: 50%;
     transform: translateX(-50%);
@@ -2347,6 +2383,7 @@ span {
 }
 
 .contact h2 {
+    position: relative;
     display: inline-block;
     left: 50%;
     transform: translateX(-50%);
@@ -2590,6 +2627,9 @@ section:nth-child(odd) .animate.scroll,
 .portfolio.show-animate .animate.scroll,
 .certifications-section.show-animate .animate.scroll,
 .events-section.show-animate .animate.scroll,
+.publications.show-animate .animate.scroll,
+.testimonials.show-animate .animate.scroll,
+.beyond-code.show-animate .animate.scroll,
 .footer.show-animate .animate.scroll {
     transition-delay: calc(.3s * var(--i));
     width: 0;
@@ -2722,7 +2762,6 @@ section:nth-child(odd) .animate.scroll,
         flex-direction: column;
     }
 
-    .home-sci,
     .about-sci {
         width: 160px;
     }

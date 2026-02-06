@@ -1,14 +1,19 @@
 'use client';
 
-import { useRef, useMemo, useState, useCallback, useEffect } from 'react';
+import { useRef, useMemo, useState, useCallback, useEffect, memo } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Html, Stars, MeshTransmissionMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 import { TOWER_SCALE, BASE_FLOOR_WIDTH, RING_RADIUS } from './towerConfig';
+import { getOptimizedStarCount, getOptimizedCanvasSettings, getPerformanceLevel } from '@/utils/performance';
 
 // Furniture tuning: global multiplier for all floating furniture to make them
 // feel larger and more prominent than raw `TOWER_SCALE`.
 export const FURNITURE_SCALE = 1.6;
+
+// Performance level
+const PERFORMANCE_LEVEL = typeof window !== 'undefined' ? getPerformanceLevel() : 'high';
+const IS_LOW_PERFORMANCE = PERFORMANCE_LEVEL === 'low';
 
 // ============================================
 // COSMIC BACKGROUND
@@ -149,7 +154,7 @@ function CosmicBackground({ isIntro }) {
     );
 
     const starGeometry = useMemo(() => {
-        const count = 4200;
+        const count = getOptimizedStarCount();
         const positions = new Float32Array(count * 3);
         const sizes = new Float32Array(count);
         const twinkle = new Float32Array(count);
@@ -241,8 +246,24 @@ function CosmicBackground({ isIntro }) {
         };
 
         return [
-            makeGalaxy({ points: 2400, arms: 4, radius: 85, thickness: 14, colorA: '#ffd1dc', colorB: '#7ab8ff', seed: 0.7 }),
-            makeGalaxy({ points: 1600, arms: 3, radius: 55, thickness: 10, colorA: '#ff6666', colorB: '#ffffff', seed: 2.1 }),
+            makeGalaxy({ 
+                points: IS_LOW_PERFORMANCE ? 600 : 2400, 
+                arms: 4, 
+                radius: 85, 
+                thickness: 14, 
+                colorA: '#ffd1dc', 
+                colorB: '#7ab8ff', 
+                seed: 0.7 
+            }),
+            makeGalaxy({ 
+                points: IS_LOW_PERFORMANCE ? 400 : 1600, 
+                arms: 3, 
+                radius: 55, 
+                thickness: 10, 
+                colorA: '#ff6666', 
+                colorB: '#ffffff', 
+                seed: 2.1 
+            }),
         ];
     }, []);
 
@@ -298,7 +319,7 @@ function CosmicBackground({ isIntro }) {
             </points>
 
             {/* Galaxies (spiral point clouds) */}
-            <group position={[120, 350, -80]} rotation={[0.2, 0.9, -0.15]}>
+            <group position={[120, 550, -80]} rotation={[0.2, 0.9, -0.15]}>
                 <points geometry={galaxyGeometries[0]}>
                     <shaderMaterial
                         ref={galaxyMaterialRef}
@@ -309,7 +330,7 @@ function CosmicBackground({ isIntro }) {
                     />
                 </points>
             </group>
-            <group position={[-140, 200, -200]} rotation={[-0.2, -0.6, 0.1]} scale={0.9}>
+            <group position={[-140, 400, -200]} rotation={[-0.2, -0.6, 0.1]} scale={0.9}>
                 <points geometry={galaxyGeometries[1]}>
                     <shaderMaterial
                         ref={(m) => { /* Galaxy 2 can also use galaxyMaterialRef if shared, or separate if needed. 
@@ -359,10 +380,11 @@ function CosmicBackground({ isIntro }) {
             {/* Mysterious "anomaly" orbs - Spread out "Flying Saucers" */}
             <group ref={orbsRef} position={[0, 0, 0]}>
                 {/* Increased count and range for "top of universe" distribution */}
-                {Array.from({ length: 12 }).map((_, i) => {
+                {/* Reduce count on low-performance devices */}
+                {Array.from({ length: IS_LOW_PERFORMANCE ? 4 : 12 }).map((_, i) => {
                     // Random positions high up in the sky
                     // Using deterministic seeded randoms would be better, but simple math works for visual spread
-                    const angle = (i / 12) * Math.PI * 2;
+                    const angle = (i / (IS_LOW_PERFORMANCE ? 4 : 12)) * Math.PI * 2;
                     const r = 150 + (i % 3) * 80; // Wide radius
                     const yInfo = 280 + (i % 4) * 40; // High altitude (280-400)
 
@@ -1287,7 +1309,7 @@ function CosmicTower({ currentSection, nextSection, totalSections, mode, isIntro
 // CAMERA CONTROLLER - Animates from base up to tower top
 // ============================================
 function CameraController({ currentSection, mode, floorHeight, totalSections, isIntro, introProgress, towerScrollProgress, zoomLevel = 1, groupShiftY = 0, globalScale = 1, towerOffsetY = 0 }) {
-    const { camera } = useThree();
+    const { camera, invalidate } = useThree();
     const scaledFloorHeight = floorHeight * globalScale;
     const totalHeight = scaledFloorHeight * totalSections;
     const anchorYRef = useRef(null);
@@ -1309,11 +1331,16 @@ function CameraController({ currentSection, mode, floorHeight, totalSections, is
         }
     }, [totalSections, scaledFloorHeight, groupShiftY, towerOffsetY]);
 
+    useEffect(() => {
+        // Ensure a redraw when section/zoom changes while frameloop is on demand.
+        invalidate();
+    }, [currentSection, mode, zoomLevel, towerScrollProgress, introProgress, invalidate]);
+
     useFrame(() => {
         let targetX, targetY, targetZ, lookAtY;
 
         // FOV Zoom effect - default 50, ranges slightly with zoomLevel
-        camera.fov = 50 * (0.8 + zoomLevel * 0.2);
+        camera.fov = 65 * (1 + zoomLevel * 0.2);
         camera.updateProjectionMatrix();
 
         if (isIntro) {
@@ -1496,12 +1523,21 @@ export default function CosmicTowerBackground({
     zoomLevel = 1
 }) {
     const [introProgress, setIntroProgress] = useState(0);
+    const [isSceneReady, setIsSceneReady] = useState(false);
 
-    // Animate intro progress from 0 to 1 over 3 seconds
+    // Mark scene as ready after a brief delay
     useEffect(() => {
-        if (isIntro) {
+        const timer = setTimeout(() => {
+            setIsSceneReady(true);
+        }, 100);
+        return () => clearTimeout(timer);
+    }, []);
+
+    // Animate intro progress from 0 to 1 over 5 seconds (extended for smoother animation)
+    useEffect(() => {
+        if (isIntro && isSceneReady) {
             let startTime = null;
-            const duration = 3000; // 3 seconds
+            const duration = 5000; // Extended to 5 seconds
 
             const animate = (timestamp) => {
                 if (!startTime) startTime = timestamp;
@@ -1521,7 +1557,10 @@ export default function CosmicTowerBackground({
         } else {
             setIntroProgress(1);
         }
-    }, [isIntro]);
+    }, [isIntro, isSceneReady]);
+    // Ensure hooks are always called in the same order: compute canvas settings
+    const canvasSettings = useMemo(() => getOptimizedCanvasSettings(), []);
+    const frameloopMode = mode === 'VIEWING' ? 'demand' : 'always';
 
     const getOpacity = () => {
         if (isIntro) return 1;
@@ -1533,6 +1572,11 @@ export default function CosmicTowerBackground({
             default: return 0.25;
         }
     };
+
+    // Don't render visual Canvas until scene is ready, but keep hooks executed
+    if (!isSceneReady) {
+        return null;
+    }
 
     return (
         <>
@@ -1546,7 +1590,22 @@ export default function CosmicTowerBackground({
                     transition: 'opacity 0.4s ease',
                 }}
             >
-                <Canvas camera={{ position: [20, 40, 120 / TOWER_SCALE], fov: 50 }} gl={{ antialias: true }}>
+                <Canvas 
+                    camera={{ position: [20, 40, 120 / TOWER_SCALE], fov: 50 }} 
+                    gl={{ 
+                        antialias: canvasSettings.antialias,
+                        powerPreference: canvasSettings.powerPreference,
+                        alpha: true,
+                        stencil: false,
+                        depth: true,
+                    }}
+                    dpr={canvasSettings.pixelRatio}
+                    performance={{ min: 0.5 }}
+                    frameloop={frameloopMode}
+                    onCreated={({ gl }) => {
+                        gl.setClearColor('#000000', 0);
+                    }}
+                >
                     <Scene
                         currentSection={currentSection}
                         nextSection={nextSection}

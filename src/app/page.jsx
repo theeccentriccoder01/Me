@@ -1,27 +1,31 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, memo } from 'react';
 import dynamic from 'next/dynamic';
+import TowerLoader from '@/components/TowerLoader';
 
-// Import actual section components
-import Home from '@/components/sections/Home';
-import About from '@/components/sections/About';
-import Education from '@/components/sections/Education';
-import Events from '@/components/sections/Events';
-import Skills from '@/components/sections/Skills';
-import Certifications from '@/components/sections/Certifications';
-import Publications from '@/components/sections/Publications';
-import Projects from '@/components/sections/Projects';
-import Testimonials from '@/components/sections/Testimonials';
-import BeyondCode from '@/components/sections/BeyondCode';
-import Contact from '@/components/sections/Contact';
-import EduLinkUp from '@/components/sections/EduLinkUp';
-import CreativeNavbar from '@/components/Navigation/CreativeNavbar';
+// Lazy load heavy components with better loading states
+const Home = dynamic(() => import('@/components/sections/Home'), { ssr: false, loading: () => null });
+const About = dynamic(() => import('@/components/sections/About'), { loading: () => null });
+const Education = dynamic(() => import('@/components/sections/Education'), { loading: () => null });
+const Events = dynamic(() => import('@/components/sections/Events'), { loading: () => null });
+const Skills = dynamic(() => import('@/components/sections/Skills'), { loading: () => null });
+const Certifications = dynamic(() => import('@/components/sections/Certifications'), { loading: () => null });
+const Publications = dynamic(() => import('@/components/sections/Publications'), { loading: () => null });
+const Projects = dynamic(() => import('@/components/sections/Projects'), { loading: () => null });
+const Testimonials = dynamic(() => import('@/components/sections/Testimonials'), { loading: () => null });
+const BeyondCode = dynamic(() => import('@/components/sections/BeyondCode'), { loading: () => null });
+const Contact = dynamic(() => import('@/components/sections/Contact'), { loading: () => null });
+const EduLinkUp = dynamic(() => import('@/components/sections/EduLinkUp'), { ssr: false, loading: () => null });
+const CreativeNavbar = dynamic(() => import('@/components/Navigation/CreativeNavbar'), { loading: () => null });
 
-// Dynamic import for Three.js
+// Dynamic import for Three.js with priority
 const CosmicTowerBackground = dynamic(
     () => import('@/components/CosmicTower/CosmicTowerBackground'),
-    { ssr: false }
+    { 
+        ssr: false,
+        loading: () => null,
+    }
 );
 
 // Section definitions
@@ -52,25 +56,36 @@ const MODES = {
 };
 
 export default function Page() {
+    const [isLoading, setIsLoading] = useState(true);
     const [introSettled, setIntroSettled] = useState(false);
-    const [currentSection, setCurrentSection] = useState(0);
+    const [currentSection, setCurrentSection] = useState(-1);
     const [mode, setMode] = useState(MODES.INTRO);
     const [towerScrollProgress, setTowerScrollProgress] = useState(1);
     const [zoomLevel, setZoomLevel] = useState(1);
+    const userZoomedRef = useRef(false);
     const sectionsContainerRef = useRef(null);
     const sectionRefs = useRef([]);
     const wheelAccumulator = useRef(0);
 
+    // Handle loader completion
+    const handleLoaderComplete = useCallback(() => {
+        // Small delay to ensure Three.js scene is ready
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 200);
+    }, []);
+
     // Auto-transition from INTRO to TOWER_SCROLL after tower settles
     useEffect(() => {
-        if (mode === MODES.INTRO) {
+        if (mode === MODES.INTRO && !isLoading) {
+            // Extended time for proper tower animation completion
             const timer = setTimeout(() => {
                 setIntroSettled(true);
                 setMode(MODES.TOWER_SCROLL);
-            }, 4000);
+            }, 6500);
             return () => clearTimeout(timer);
         }
-    }, [mode]);
+    }, [mode, isLoading]);
 
     // Handle "Explore My Universe" button click
     const handleExplore = useCallback(() => {
@@ -110,6 +125,7 @@ export default function Page() {
         if (e.ctrlKey || e.metaKey) {
             e.preventDefault();
             const zoomDelta = e.deltaY * 0.002;
+            userZoomedRef.current = true;
             setZoomLevel(prev => Math.max(0.4, Math.min(2.5, prev + zoomDelta)));
             return;
         }
@@ -135,6 +151,34 @@ export default function Page() {
         }
     }, [mode, sections.length]);
 
+    // Compute a sensible default zoom based on viewport width
+    useEffect(() => {
+        const getDefaultZoom = (w) => {
+            if (!w) return 1;
+            if (w < 480) return 0.7; // small phones
+            if (w < 768) return 0.8; // larger phones
+            if (w < 1024) return 0.9; // tablets/small laptops
+            return 1; // desktops
+        };
+
+        const applyDefault = () => {
+            if (!userZoomedRef.current) {
+                setZoomLevel(getDefaultZoom(window.innerWidth));
+            }
+        };
+
+        // Set on mount
+        applyDefault();
+
+        // Update on resize only if user hasn't manually zoomed
+        const onResize = () => {
+            if (!userZoomedRef.current) applyDefault();
+        };
+
+        window.addEventListener('resize', onResize);
+        return () => window.removeEventListener('resize', onResize);
+    }, []);
+
     // Intersection Observer to track which section is in view
     useEffect(() => {
         if (mode !== MODES.VIEWING) return;
@@ -142,15 +186,15 @@ export default function Page() {
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
-                    if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+                    if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
                         const index = sectionRefs.current.indexOf(entry.target);
-                        if (index !== -1 && index !== currentSection) {
+                        if (index !== -1) {
                             setCurrentSection(index);
                         }
                     }
                 });
             },
-            { threshold: [0.5], rootMargin: '-10% 0px -10% 0px' }
+            { threshold: [0, 0.1, 0.2, 0.3, 0.5, 0.7, 1], rootMargin: '0px 0px -20% 0px' }
         );
 
         sectionRefs.current.forEach((ref) => {
@@ -158,7 +202,7 @@ export default function Page() {
         });
 
         return () => observer.disconnect();
-    }, [mode, currentSection]);
+    }, [mode]);
 
     // Wheel listener - attach to window for tower scroll mode
     useEffect(() => {
@@ -174,29 +218,36 @@ export default function Page() {
 
     return (
         <>
+            {/* Loading Screen */}
+            {isLoading && <TowerLoader onComplete={handleLoaderComplete} />}
+            
             {/* Creative Navbar - show after intro settles */}
-            <CreativeNavbar
-                currentSection={currentSection}
-                onNavigate={handleNavNavigate}
-                isVisible={introSettled || mode !== MODES.INTRO}
-            />
+            {!isLoading && (
+                <CreativeNavbar
+                    currentSection={currentSection}
+                    onNavigate={handleNavNavigate}
+                    isVisible={introSettled || mode !== MODES.INTRO}
+                />
+            )}
 
             {/* 3D Tower Background */}
-            <CosmicTowerBackground
-                currentSection={currentSection}
-                nextSection={null}
-                totalSections={sections.length}
-                mode={mode}
-                isIntro={mode === MODES.INTRO}
-                onExplore={handleExplore}
-                towerScrollProgress={towerScrollProgress}
-                onSectionSelect={handleSectionSelect}
-                sections={sections}
-                zoomLevel={zoomLevel}
-            />
+            {!isLoading && (
+                <CosmicTowerBackground
+                    currentSection={currentSection}
+                    nextSection={null}
+                    totalSections={sections.length}
+                    mode={mode}
+                    isIntro={mode === MODES.INTRO}
+                    onExplore={handleExplore}
+                    towerScrollProgress={towerScrollProgress}
+                    onSectionSelect={handleSectionSelect}
+                    sections={sections}
+                    zoomLevel={zoomLevel}
+                />
+            )}
 
             {/* Sections - continuous scroll layout */}
-            {mode === MODES.VIEWING && (
+            {!isLoading && mode === MODES.VIEWING && (
                 <div className="sections-wrapper" ref={sectionsContainerRef}>
                     {sections.map((section, index) => {
                         const SectionComponent = section.Component;
@@ -228,7 +279,7 @@ export default function Page() {
             )}
 
             {/* Back to Tower Button - show when viewing sections */}
-            {mode === MODES.VIEWING && (
+            {!isLoading && mode === MODES.VIEWING && (
                 <button
                     className="back-to-tower-btn"
                     onClick={() => {
@@ -255,6 +306,13 @@ export default function Page() {
           scroll-behavior: smooth;
           scrollbar-width: thin;
           scrollbar-color: #AD2831 #0a0202;
+        }
+
+        /* Ensure sections are completely hidden during load/intro */
+        .section-container {
+          visibility: visible;
+          opacity: 1;
+          transition: opacity 0.3s ease;
         }
 
         .sections-wrapper::-webkit-scrollbar { width: 8px; }

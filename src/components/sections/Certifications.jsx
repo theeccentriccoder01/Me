@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 
 export default function Certifications() {
     const sectionRef = useRef(null);
-    const [visibleCount, setVisibleCount] = useState(6);
+    const [visibleCount, setVisibleCount] = useState(10);
 
     useEffect(() => {
         const section = sectionRef.current;
@@ -75,7 +75,7 @@ export default function Certifications() {
     ];
 
     const loadMore = () => {
-        setVisibleCount(prev => Math.min(prev + 6, certifications.length));
+        setVisibleCount(prev => Math.min(prev + 10, certifications.length));
     };
 
     const loadAll = () => {
@@ -83,7 +83,7 @@ export default function Certifications() {
     };
 
     const showLess = () => {
-        setVisibleCount(6);
+        setVisibleCount(10);
     };
 
     return (
@@ -114,7 +114,7 @@ export default function Certifications() {
                             <button className="inverse-btn" onClick={loadAll}>Load All</button>
                         </>
                     )}
-                    {visibleCount > 6 && (
+                    {visibleCount > 10 && (
                         <button className="btn" onClick={showLess}>Show Less</button>
                     )}
                 </div>

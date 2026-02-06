@@ -1,9 +1,17 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import './Testimonials.css';
 
 const testimonials = [
+    {
+        name: 'Akshay Kumar',
+        title: 'Full-Stack Developer | AI & Cloud-Driven Products',
+        subtitle: 'MERN | Google Cloud Innovator',
+        avatar: '/images/Akshay.jpg',
+        quote: `I worked with Sagnik during GSSoC25 and Hacktoberfest 2025, where he maintained multiple repositories with great clarity, responsiveness, and leadership. He guided contributors patiently, set clear expectations, and offered constructive feedback that helped me learn and improve. His technical understanding and ability to manage large codebases made contributing a positive learning experience. I'd be happy to work with him again.`,
+        context: 'GSSoC25 & Hacktoberfest 2025'
+    },
     {
         name: 'Kavlin Kaur',
         title: 'MCA Student | Aspiring AI Engineer',
@@ -17,14 +25,6 @@ He supported me at every step - whether it was helping me understand the project
 
 Grateful to have collaborated with him, and I'd highly recommend Sagnik to anyone looking for a dedicated mentor or a reliable collaborator in the tech and open-source community.`,
         context: 'GSSoC & Hacktoberfest'
-    },
-    {
-        name: 'Akshay Kumar',
-        title: 'Full-Stack Developer | AI & Cloud-Driven Products',
-        subtitle: 'MERN | Google Cloud Innovator',
-        avatar: '/images/Akshay.jpg',
-        quote: `I worked with Sagnik during GSSoC25 and Hacktoberfest 2025, where he maintained multiple repositories with great clarity, responsiveness, and leadership. He guided contributors patiently, set clear expectations, and offered constructive feedback that helped me learn and improve. His technical understanding and ability to manage large codebases made contributing a positive learning experience. I'd be happy to work with him again.`,
-        context: 'GSSoC25 & Hacktoberfest 2025'
     }
 ];
 
@@ -61,33 +61,37 @@ export default function Testimonials() {
 
     // Auto-rotate testimonials
     useEffect(() => {
-        intervalRef.current = setInterval(() => {
-            handleNext();
+        const interval = setInterval(() => {
+            if (!isAnimating) {
+                setIsAnimating(true);
+                setActiveIndex((prev) => (prev + 1) % testimonials.length);
+                setTimeout(() => setIsAnimating(false), 500);
+            }
         }, 8000);
 
-        return () => clearInterval(intervalRef.current);
-    }, [activeIndex]);
+        return () => clearInterval(interval);
+    }, [isAnimating]);
 
-    const handleNext = () => {
+    const handleNext = useCallback(() => {
         if (isAnimating) return;
         setIsAnimating(true);
         setActiveIndex((prev) => (prev + 1) % testimonials.length);
         setTimeout(() => setIsAnimating(false), 500);
-    };
+    }, [isAnimating]);
 
-    const handlePrev = () => {
+    const handlePrev = useCallback(() => {
         if (isAnimating) return;
         setIsAnimating(true);
         setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
         setTimeout(() => setIsAnimating(false), 500);
-    };
+    }, [isAnimating]);
 
-    const handleDotClick = (index) => {
+    const handleDotClick = useCallback((index) => {
         if (isAnimating || index === activeIndex) return;
         setIsAnimating(true);
         setActiveIndex(index);
         setTimeout(() => setIsAnimating(false), 500);
-    };
+    }, [isAnimating, activeIndex]);
 
     const currentTestimonial = testimonials[activeIndex];
 

@@ -227,7 +227,7 @@ export default function Education() {
     );
 
     return (
-        <section className="education" id="education" ref={sectionRef}>
+        <section className="education" id="journey" ref={sectionRef}>
             <h2 className="heading">My <span>Journey</span></h2>
 
             <div className="education-row">

@@ -294,7 +294,7 @@ export default function Projects() {
     ];
 
     return (
-        <section className="portfolio" id="portfolio" ref={sectionRef}>
+        <section className="portfolio" id="projects" ref={sectionRef}>
             <h2 className="heading">My <span>Projects</span></h2>
 
             <div className="myBtnBox">

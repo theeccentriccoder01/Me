@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useFrame, Canvas } from '@react-three/fiber';
 import { Html, Float, Line, OrbitControls, Billboard } from '@react-three/drei';
 import * as THREE from 'three';
@@ -752,6 +752,87 @@ function EduLinkUpScene() {
 // EXPORT
 // -----------------------------------------------------------------------------
 export default function EduLinkUp() {
+    const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
+
+    useEffect(() => {
+        const handleResize = () => setWindowWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    // Show message on screens smaller than 1000px
+    if (windowWidth < 1000) {
+        return (
+            <div style={{ 
+                width: '100%', 
+                minHeight: '100vh', 
+                display: 'flex', 
+                flexDirection: 'column',
+                justifyContent: 'center', 
+                alignItems: 'center',
+                padding: '2rem',
+                textAlign: 'center',
+                background: 'linear-gradient(135deg, rgba(10, 2, 2, 0.95) 0%, rgba(20, 5, 8, 0.95) 100%)',
+            }}>
+                <div style={{
+                    maxWidth: '600px',
+                    padding: '3rem 2rem',
+                    background: 'rgba(0, 0, 0, 0.4)',
+                    borderRadius: '16px',
+                    border: '2px solid rgba(173, 40, 49, 0.3)',
+                    backdropFilter: 'blur(10px)',
+                }}>
+                    <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🖥️</div>
+                    <h2 style={{ 
+                        color: '#AD2831', 
+                        fontSize: '2.5rem', 
+                        marginBottom: '1rem',
+                        fontWeight: '700',
+                    }}>
+                        Desktop Experience Required
+                    </h2>
+                    <p style={{ 
+                        color: 'rgba(255, 255, 255, 0.85)', 
+                        fontSize: '1.3rem', 
+                        lineHeight: '1.6',
+                        marginBottom: '1.5rem',
+                    }}>
+                        The <strong style={{ color: '#AD2831' }}>EduLinkUp Ecosystem</strong> section on my portfolio features an interactive 3D experience best viewed on a desktop or larger screen (1000px+) for optimal interaction.
+                    </p>
+                    <p style={{ 
+                        color: 'rgba(255, 255, 255, 0.6)', 
+                        fontSize: '1.1rem',
+                    }}>
+                        Please switch to a desktop device or expand your browser window to explore this immersive section.
+                    </p>
+                    <div style={{
+                        marginTop: '2rem',
+                        padding: '1rem',
+                        background: 'rgba(173, 40, 49, 0.1)',
+                        borderRadius: '8px',
+                        border: '1px solid rgba(173, 40, 49, 0.2)',
+                    }}>
+                        <p style={{ 
+                            color: 'rgba(255, 255, 255, 0.7)', 
+                            fontSize: '1rem',
+                            margin: 0,
+                        }}>
+                            💡 <strong>Tip:</strong> Visit <a 
+                                href="https://www.edulinkup.dev" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                style={{ color: '#AD2831', textDecoration: 'underline' }}
+                            >
+                                edulinkup.dev
+                            </a> directly to explore EduLinkUp's ecosystem!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    // Show full 3D experience on larger screens
     return (
         <div style={{ width: '100%', height: '100vh', position: 'relative' }}>
             <Canvas

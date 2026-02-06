@@ -245,7 +245,7 @@
 
 .venue-publisher {
     font-size: 1.1rem;
-    color: var(--main-color);
+    color: #fb2626 !important;
     opacity: 0.8;
 }
 
@@ -277,15 +277,19 @@
     align-items: flex-start;
     gap: 0.8rem;
     font-size: 1.3rem;
-    color: var(--text-color);
+    color: #fc0707 !important;
     opacity: 0.85;
 }
 
 .highlights-list li i {
-    color: var(--main-color);
+    color: #fc0707;
     font-size: 1.4rem;
     margin-top: 0.1rem;
     flex-shrink: 0;
+}
+
+.highlights-list li span {
+    color: #fff;
 }
 
 /* Card Footer */
