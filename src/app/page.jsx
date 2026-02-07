@@ -66,6 +66,8 @@ export default function Page() {
     const sectionsContainerRef = useRef(null);
     const sectionRefs = useRef([]);
     const wheelAccumulator = useRef(0);
+    const touchStartY = useRef(null);
+    const touchAccumulator = useRef(0);
 
     // Handle loader completion
     const handleLoaderComplete = useCallback(() => {
@@ -215,6 +217,57 @@ export default function Page() {
         window.addEventListener('wheel', handleGlobalWheel, { passive: false });
         return () => window.removeEventListener('wheel', handleGlobalWheel);
     }, [handleWheel, mode]);
+
+    // Touch support for tower scroll mode (mobile swipe)
+    useEffect(() => {
+        const handleTouchStart = (e) => {
+            if (mode !== MODES.TOWER_SCROLL) return;
+            if (e.touches.length !== 1) return;
+            touchStartY.current = e.touches[0].clientY;
+        };
+
+        const handleTouchMove = (e) => {
+            if (mode !== MODES.TOWER_SCROLL) return;
+            if (e.touches.length !== 1 || touchStartY.current === null) return;
+
+            const currentY = e.touches[0].clientY;
+            const delta = touchStartY.current - currentY;
+            touchStartY.current = currentY;
+
+            e.preventDefault();
+            touchAccumulator.current += delta;
+
+            const threshold = 60;
+            if (Math.abs(touchAccumulator.current) >= threshold) {
+                const direction = touchAccumulator.current > 0 ? -1 : 1;
+                touchAccumulator.current = 0;
+
+                setTowerScrollProgress((prev) => {
+                    const step = 1 / (sections.length - 1 || 1);
+                    let target = direction > 0 ? prev + step : prev - step;
+                    target = Math.round(target / step) * step;
+                    return Math.max(0, Math.min(1, target));
+                });
+            }
+        };
+
+        const handleTouchEnd = () => {
+            touchStartY.current = null;
+            touchAccumulator.current = 0;
+        };
+
+        window.addEventListener('touchstart', handleTouchStart, { passive: true });
+        window.addEventListener('touchmove', handleTouchMove, { passive: false });
+        window.addEventListener('touchend', handleTouchEnd);
+        window.addEventListener('touchcancel', handleTouchEnd);
+
+        return () => {
+            window.removeEventListener('touchstart', handleTouchStart);
+            window.removeEventListener('touchmove', handleTouchMove);
+            window.removeEventListener('touchend', handleTouchEnd);
+            window.removeEventListener('touchcancel', handleTouchEnd);
+        };
+    }, [mode, sections.length]);
 
     return (
         <>

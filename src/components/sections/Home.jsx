@@ -63,7 +63,7 @@ export default function Home() {
                 </p>
 
                 <div className="btn-box">
-                    <a href="#education" className="btn">Hire Me</a>
+                    <a href="#journey" className="btn">Hire Me</a>
                     <a href="#contact" className="btn">Let&apos;s Talk</a>
                     <span className="animate" style={{ '--i': 5 }}></span>
                 </div>

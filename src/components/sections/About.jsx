@@ -48,7 +48,7 @@ export default function About() {
                 </p>
 
                 <div className="btn-box btns">
-                    <a href="#contact" className="btn">Contact Me</a>
+                    <a href="/Resume/Resumé - Sagnik Chakraborty A3.pdf" className="btn">My Resume</a>
                 </div>
             </div>
 
