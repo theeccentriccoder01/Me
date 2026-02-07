@@ -232,7 +232,10 @@ export default function Education() {
 
             <div className="education-row">
                 <div className="education-column exp-col">
-                    <h3 className="title">Experience</h3>
+                    <h3 className="title">Experience &nbsp;&nbsp;</h3>
+                    <div className="btn-box btns resume-btn-container">
+                        <a href="/Resume/Resumé - Sagnik Chakraborty A3.pdf" className="btn resume-btn">My Resume</a>
+                    </div>
                     <div className="education-box">
                         {experiences.map((exp, idx) => renderTimelineItem(exp, idx, idx === 0))}
                     </div>

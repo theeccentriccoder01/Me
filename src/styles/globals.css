@@ -461,6 +461,25 @@ span {
     background: var(--second-bg-color);
 }
 
+/* Small, scoped styles for the resume download button in the Education section */
+.btn-box.btns.resume-btn-container {
+    width: auto;
+    height: auto !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.btn-box.btns.resume-btn-container .btn.resume-btn {
+    width: 13rem;
+    height: 4rem;
+    font-size: 1.5rem;
+    padding: 0 0.6rem;
+    border-radius: 0.6rem;
+}
+
+
 .about-sci {
     margin-top: 2rem;
     display: flex;
@@ -2454,7 +2473,7 @@ span {
     resize: none;
 }
 
-.contact form .btn-box.btns .btn {
+.contact form .btn-box .btns .btn {
     cursor: pointer;
 }
 
