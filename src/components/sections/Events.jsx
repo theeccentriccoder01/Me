@@ -209,8 +209,8 @@ export default function Events() {
     ]
 
     const oscBadges = [
+        { src: "/images/Sagnik OSCG '26 State Lead.png", name: 'OSCI Contributor ID Card' },
         { src: '/Badges/OSCI Contributor ID Card.png', name: 'OSCI Contributor ID Card' },
-        { src: '/Badges/OSCI Contributor NexFellow Banner.png', name: 'OSCI Contributor NexFellow Banner' },
     ]
 
     return (
@@ -682,6 +682,24 @@ export default function Events() {
                                     <span className="badge-name">{badge.name}</span>
                                 </div>
                             ))}
+                        </div>
+                    </div>
+
+                    <div className="event-media-section">
+                        <h4><i className="bx bx-image"></i> Event Media</h4>
+                        <div className="event-media-grid">
+                            <div className="media-item-wrapper" onClick={() => openModal('/images/WoCS2025_contributor_Sagnik_Chakraborty.png', 'Contributor')}>
+                                <img src="/images/WoCS2025_contributor_Sagnik_Chakraborty.png" alt="Contributor" className="event-media-item" />
+                                <div className="media-hover-overlay">
+                                    <span>Click to View</span>
+                                </div>
+                            </div>
+                            <div className="media-item-wrapper" onClick={() => openModal('/images/WoCS2025_admin_Sagnik_Chakraborty.png', 'Project Admin')}>
+                                <img src="/images/WoCS2025_admin_Sagnik_Chakraborty.png" alt="Project Admin" className="event-media-item" />
+                                <div className="media-hover-overlay">
+                                    <span>Click to View</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
