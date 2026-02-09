@@ -209,8 +209,8 @@ export default function Events() {
     ]
 
     const oscBadges = [
-        { src: "/images/Sagnik OSCG '26 State Lead.png", name: 'OSCI Contributor ID Card' },
-        { src: '/Badges/OSCI Contributor ID Card.png', name: 'OSCI Contributor ID Card' },
+        { src: "/images/Sagnik OSCG '26 State Lead.png", name: 'OSCG 2026 State Lead ID Card' },
+        { src: '/Badges/OSCI Contributor ID Card.png', name: 'OSCI 2025 Contributor ID Card' },
     ]
 
     return (
