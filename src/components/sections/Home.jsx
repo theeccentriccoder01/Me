@@ -70,7 +70,7 @@ export default function Home() {
             </div>
 
             <div className="home-sci">
-                <a href="https://github.com/eccentriccoder01" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/theeccentriccoder" target="_blank" rel="noopener noreferrer">
                     <i className="bx bxl-github"></i>
                 </a>
                 <a href="https://www.instagram.com/mr.ecc.entric/" target="_blank" rel="noopener noreferrer">
@@ -96,3 +96,4 @@ export default function Home() {
         </section>
     );
 }
+

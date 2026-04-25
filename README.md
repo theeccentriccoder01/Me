@@ -4,25 +4,25 @@ A fully responsive animated personal portfolio website, responsive for all devic
 
 ## Live Demo
 
-Experience it live here: [**Me**](https://eccentriccoder01.github.io/Me)
+Experience it live here: [**Me**](https://theeccentriccoder.github.io/Me)
 
  <div align="center">
  <p>
 
 [![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 ![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg?style=flat)
-![Visitors](https://api.visitorbadge.io/api/Visitors?path=eccentriccoder01%2FMe%20&countColor=%23263759&style=flat)
-![GitHub Forks](https://img.shields.io/github/forks/eccentriccoder01/Me)
-![GitHub Repo Stars](https://img.shields.io/github/stars/eccentriccoder01/Me)
-![GitHub Contributors](https://img.shields.io/github/contributors/eccentriccoder01/Me)
-![GitHub Last Commit](https://img.shields.io/github/last-commit/eccentriccoder01/Me)
-![GitHub Repo Size](https://img.shields.io/github/repo-size/eccentriccoder01/Me)
-![GitHub Total Lines](https://sloc.xyz/github/eccentriccoder01/Me)
-![Github](https://img.shields.io/github/license/eccentriccoder01/Me)
-![GitHub Issues](https://img.shields.io/github/issues/eccentriccoder01/Me)
-![GitHub Closed Issues](https://img.shields.io/github/issues-closed-raw/eccentriccoder01/Me)
-![GitHub Pull Requests](https://img.shields.io/github/issues-pr/eccentriccoder01/Me)
-![GitHub Closed Pull Requests](https://img.shields.io/github/issues-pr-closed/eccentriccoder01/Me)
+![Visitors](https://api.visitorbadge.io/api/Visitors?path=theeccentriccoder%2FMe%20&countColor=%23263759&style=flat)
+![GitHub Forks](https://img.shields.io/github/forks/theeccentriccoder/Me)
+![GitHub Repo Stars](https://img.shields.io/github/stars/theeccentriccoder/Me)
+![GitHub Contributors](https://img.shields.io/github/contributors/theeccentriccoder/Me)
+![GitHub Last Commit](https://img.shields.io/github/last-commit/theeccentriccoder/Me)
+![GitHub Repo Size](https://img.shields.io/github/repo-size/theeccentriccoder/Me)
+![GitHub Total Lines](https://sloc.xyz/github/theeccentriccoder/Me)
+![Github](https://img.shields.io/github/license/theeccentriccoder/Me)
+![GitHub Issues](https://img.shields.io/github/issues/theeccentriccoder/Me)
+![GitHub Closed Issues](https://img.shields.io/github/issues-closed-raw/theeccentriccoder/Me)
+![GitHub Pull Requests](https://img.shields.io/github/issues-pr/theeccentriccoder/Me)
+![GitHub Closed Pull Requests](https://img.shields.io/github/issues-pr-closed/theeccentriccoder/Me)
  </p>
  </div>
 
@@ -49,7 +49,7 @@ To run locally:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/eccentriccoder01/Me.git
+   git clone https://github.com/theeccentriccoder/Me.git
    cd Me
    ```
 
@@ -81,8 +81,9 @@ This project is open-source and available under the MIT License.
 
 ## 📞 Contact
 
-Developed by [Eccentric Explorer](https://eccentriccoder01.github.io/Me)
+Developed by [Eccentric Explorer](https://theeccentriccoder.github.io/Me)
 
 Feel free to reach out with any questions or feedback\!
 
 ![Cat](https://github.com/XevenTech/xeventech/blob/main/cat.gif?raw=true "Thank You")
+

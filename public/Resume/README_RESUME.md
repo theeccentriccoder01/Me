@@ -199,7 +199,7 @@ Resume/
 
 All links are working and clickable:
 - 📧 Email: sc26220@it.jgec.ac.in
-- 🌐 Portfolio: [eccentriccoder01.github.io/Me](https://eccentriccoder01.github.io/Me)
+- 🌐 Portfolio: [theeccentriccoder.github.io/Me](https://theeccentriccoder.github.io/Me)
 - 💼 LinkedIn: [linkedin.com/in/eccentricexplorer](https://linkedin.com/in/eccentricexplorer)
 - 📊 DeepOptiNet: [kaggle.com/code/mreccentric/deepoptinet-parallel-unimodal-recognition](https://kaggle.com/code/mreccentric/deepoptinet-parallel-unimodal-recognition)
 - 🌍 VoyageVista: [voyagevista.vercel.app](https://voyagevista.vercel.app/)
@@ -231,3 +231,4 @@ This resume template is created for Sagnik Chakraborty. Feel free to use it as a
 *Front-End Developer | Deep Learning Enthusiast*
 
 For any questions or issues, contact: sc26220@it.jgec.ac.in
+

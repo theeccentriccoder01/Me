@@ -68,7 +68,7 @@ export default function About() {
                 <a href="https://www.skills.google/public_profiles/88955038-92e7-4861-b63b-aee7a92261cc" target="_blank" rel="noopener noreferrer">
                     <img src="/Logos/Google Cloud.jpg" alt="LeetCode" className="about-sci-logo" />
                 </a>
-                <a href="https://leetcode.com/u/eccentriccoder01/" target="_blank" rel="noopener noreferrer">
+                <a href="https://leetcode.com/u/theeccentriccoder/" target="_blank" rel="noopener noreferrer">
                     <img src="/Logos/LeetCode.png" alt="LeetCode" className="about-sci-logo" />
                 </a>
                 <a href="https://www.naukri.com/code360/profile/eccentriccoder" target="_blank" rel="noopener noreferrer">
@@ -84,3 +84,4 @@ export default function About() {
         </section>
     );
 }
+
