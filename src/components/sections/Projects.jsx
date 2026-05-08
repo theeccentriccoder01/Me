@@ -96,7 +96,7 @@ export default function Projects() {
             category: 'aiml',
             image: '/images/DeepOptinet.jpg',
             tags: ['Python', 'TensorFlow', 'Keras', 'Pandas', 'MatPlotLib'],
-            link: 'https://github.com/theeccentriccoder/DeepOptinet',
+            link: 'https://github.com/theeccentriccoder01/DeepOptinet',
             description: '• An optimised CNN model with Wavelet Filtering and SE-Blocks for segmentation-free robust iris and fingerprint unimodal authentication.\n• Test and Prediction Accuracies were 92.4% and 95.83% for Iris, 99.% and 100% for Fingerprint, without any augmentation (Version 3, Kaggle).'
         },
         {
@@ -112,7 +112,7 @@ export default function Projects() {
             category: 'webapp',
             image: '/images/AtlasphereApp.png',
             tags: ['HTML', 'CSS', 'JavaScript', 'Google Maps API'],
-            link: 'https://theeccentriccoder.github.io/Atlasphere',
+            link: 'https://theeccentriccoder01.github.io/Atlasphere',
             description: '• A responsive interactive map application which uses the Google Maps JavaScript API and Places API for dynamic map rendering, location searching, and fetching nearby places.\n• Key features include categorised filtering, custom markers with info windows, geolocation to find the user\'s location, and a clean dark-themed UI.\n• The application provides a seamless user experience with real-time toast notifications, fullscreen mode, and a collapsible sidebar.'
         },
         {
@@ -136,7 +136,7 @@ export default function Projects() {
             category: 'game',
             image: '/images/Neural Echoes App.png',
             tags: ['HTML5', 'CSS3', 'JavaScript'],
-            link: 'https://theeccentriccoder.github.io/Neural-Echoes/',
+            link: 'https://theeccentriccoder01.github.io/Neural-Echoes/',
             description: '• An interactive cyberpunk story web app with a dynamic, branching narrative and timed decisions.\n• The game tracks player stats (Trust, Stealth, Intel) and includes an achievement system.\n• The UI has a typewriter effect, dynamic background, and is fully responsive.'
         },
         {
@@ -144,7 +144,7 @@ export default function Projects() {
             category: 'game',
             image: '/images/TheRapNation.jpg',
             tags: ['Python', 'Pyrogram', 'MongoDB', 'Docker'],
-            link: 'https://github.com/theeccentriccoder/TheRapNation',
+            link: 'https://github.com/theeccentriccoder01/TheRapNation',
             description: '• A sleek music bot powered by Telegram for smart, interactive music streaming.\n• Start new sessions, queue management, playlist support\n• Voice chat integration with high-quality audio streaming\n• Admin controls and user-friendly commands\n• MongoDB integration for persistent data\n• Fully responsive with Docker deployment'
         },
         {
@@ -152,7 +152,7 @@ export default function Projects() {
             category: 'webapp',
             image: '/images/HyperMathixLogo.png',
             tags: ['HTML5', 'CSS3', 'JavaScript'],
-            link: 'https://github.com/theeccentriccoder/HyperMathix',
+            link: 'https://github.com/theeccentriccoder01/HyperMathix',
             description: 'HyperMathix is a scientific calculator which offers unparalleled calculation speed and precision, empowering users with advanced graph plotting and real-time collaborative problem-solving for complex mathematical tasks...'
         },
         {
@@ -160,7 +160,7 @@ export default function Projects() {
             category: 'webapp',
             image: '/images/CosmosphereApp.png',
             tags: ['HTML5', 'CSS3', 'Vanilla JavaScript'],
-            link: 'https://theeccentriccoder.github.io/Cosmosphere/',
+            link: 'https://theeccentriccoder01.github.io/Cosmosphere/',
             description: '• An interactive web application detailing the history and future of space exploration.\n• Dynamic timeline with animated era switching, starry background and counters for key statistics.\n• Interactive mission simulator to configure and launch virtual missions.\n• Data visualisations including progress ring, bar, and pie charts.\n• Showcases future projects like Mars colonisation and lunar bases.'
         },
         {
@@ -168,7 +168,7 @@ export default function Projects() {
             category: 'game',
             image: '/images/MystIQApp.png',
             tags: ['HTML5', 'CSS3', 'JavaScript'],
-            link: 'https://theeccentriccoder.github.io/MystIQ',
+            link: 'https://theeccentriccoder01.github.io/MystIQ',
             description: '• Quiz app with customizable settings (topics, difficulty, question count, time limits) and detailed results.\n• Fetches questions from Open Trivia Database API with offline fallback.\n• Gamified UI with themes (Cyberpunk, Forest, Ocean, Sunset, Cosmic), animations, and progress tracking via localStorage.'
         },
         {
@@ -176,7 +176,7 @@ export default function Projects() {
             category: 'fullstack',
             image: '/images/TalkAnonApp.png',
             tags: ['HTML5', 'CSS3', 'JavaScript', 'NodeJS', 'ExpressJS', 'Socket.IO'],
-            link: 'https://theeccentriccoder.github.io/TalkAnon/',
+            link: 'https://theeccentriccoder01.github.io/TalkAnon/',
             description: 'TalkAnon is a full-stack, anonymous chatroom hub which features multiple chatrooms, customisable settings including dark mode and notifications, and rich message formatting. The responsive UI ensures a seamless experience across all devices.'
         },
         {
@@ -192,7 +192,7 @@ export default function Projects() {
             category: 'fullstack',
             image: '/images/AttiriaApp.png',
             tags: ['ReactJS', 'Tailwind CSS', 'Python', 'Django-REST-Framework', 'SQLite', 'Scrapy'],
-            link: 'https://github.com/theeccentriccoder/Attiria',
+            link: 'https://github.com/theeccentriccoder01/Attiria',
             description: 'A full-stack e-commerce clone of the Nobero website with product listings, filtering, and detail views, developed using ReactJS, Python, Django REST Framework, and Scrapy for live product data scraping...'
         },
         {
@@ -216,7 +216,7 @@ export default function Projects() {
             category: 'webapp',
             image: '/images/AuroristaApp.png',
             tags: ['HTML5', 'CSS3', 'JavaScript'],
-            link: 'https://theeccentriccoder.github.io/Aurorista/',
+            link: 'https://theeccentriccoder01.github.io/Aurorista/',
             description: 'An interactive image slider and gallery designed to showcase captivating visuals with an elegant and intuitive user interface. It combines smooth animations, responsive design, and robust controls to deliver an exceptional Browse experience.'
         },
         {
@@ -224,7 +224,7 @@ export default function Projects() {
             category: 'webapp',
             image: '/images/LuxtickApp.png',
             tags: ['HTML5', 'CSS3', 'JavaScript'],
-            link: 'https://theeccentriccoder.github.io/Luxtick/',
+            link: 'https://theeccentriccoder01.github.io/Luxtick/',
             description: 'Luxtick is a premium web-based countdown timer application offering a stylish, highly customisable, and functional user experience.'
         },
         {
@@ -232,7 +232,7 @@ export default function Projects() {
             category: 'game',
             image: '/images/MemorecallApp.png',
             tags: ['HTML5', 'CSS3', 'JavaScript'],
-            link: 'https://theeccentriccoder.github.io/Memorecall/',
+            link: 'https://theeccentriccoder01.github.io/Memorecall/',
             description: '• A premium memory card game with a dark theme and gold accents.\n• Find matching pairs on a dynamic board with multiple difficulty levels.\n• Features a real-time timer, move counter, and score tracker. Includes hint functionality, pause/resume, and keyboard shortcuts.\n• The UI is fully responsive with smooth 3D card-flipping animations, interactive modals, and dynamic background effects.'
         },
         {
@@ -240,7 +240,7 @@ export default function Projects() {
             category: 'webapp',
             image: '/images/TeslaPage.png',
             tags: ['HTML5', 'CSS3', 'JavaScript'],
-            link: 'https://theeccentriccoder.github.io/Nikola-Tesla-Illuminating-Legacies/',
+            link: 'https://theeccentriccoder01.github.io/Nikola-Tesla-Illuminating-Legacies/',
             description: 'This interactive tribute webpage celebrates the life, achievements, and enduring legacy of Nikola Tesla - the brilliant scientist whose visionary ideas shaped our modern world. Through elegant design and engaging interactivity, we honor the man who saw beyond what the human mind could perceive.'
         },
         {
@@ -248,7 +248,7 @@ export default function Projects() {
             category: 'game',
             image: '/images/TextTangleLight.png',
             tags: ['HTML5', 'CSS3', 'jQuery', 'JavaScript'],
-            link: 'https://theeccentriccoder.github.io/TextTangle/',
+            link: 'https://theeccentriccoder01.github.io/TextTangle/',
             description: '• A modern, animated Wordle game with smart features, daily challenges, custom words (2-Player)\n• Easy/Medium/Hard modes\n• Toggle sound and dark mode, and fully responsive UI with animations\n• Colorblind-friendly option (C/E/W)\n• Tracks wins, streaks, stats, guess history\n• Shows word meaning + quote after game\n• Letter frequency heatmap\n• On-screen virtual keyboard'
         },
         {
@@ -256,7 +256,7 @@ export default function Projects() {
             category: 'webapp',
             image: '/images/PlanoramaApp.png',
             tags: ['HTML5', 'CSS3', 'jQuery', 'JavaScript'],
-            link: 'https://theeccentriccoder.github.io/Planorama/',
+            link: 'https://theeccentriccoder01.github.io/Planorama/',
             description: '• A sleek task manager with smart sorting, live stats, smooth animations, glassmorphism UI, and a responsive layout for seamless productivity.\n• Add tasks with deadline, description, and priority (high, low, auto).\n• Auto-organises tasks based on urgency.\n• Mark tasks done; filter by All, Pending, or Completed, and search tasks instantly by name.\n• View live stats: total, done, pending.'
         },
         {
@@ -264,7 +264,7 @@ export default function Projects() {
             category: 'webapp',
             image: '/images/Scan-RLight.png',
             tags: ['HTML5', 'CSS3', 'JavaScript'],
-            link: 'https://theeccentriccoder.github.io/Scan-R/',
+            link: 'https://theeccentriccoder01.github.io/Scan-R/',
             description: '• A QR code web app to generate, scan, upload, and decode customisable QR codes with themes, templates, and live camera support.\n• Set size, colors, and error correction (L, M, Q, H)\n• Download, copy, or share QR codes instantly\n• Upload or drag-and-drop QR images to decode\n• Scan QR codes using your device camera\n• Copy decoded text or reuse it in generator\n• Quick templates for Wi-Fi, email, phone, SMS\n• Responsive UI with animated backgrounds, Light/Dark modes with smooth animations'
         }
     ];

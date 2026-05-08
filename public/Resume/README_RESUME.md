@@ -199,7 +199,7 @@ Resume/
 
 All links are working and clickable:
 - 📧 Email: sc26220@it.jgec.ac.in
-- 🌐 Portfolio: [theeccentriccoder.github.io/Me](https://theeccentriccoder.github.io/Me)
+- 🌐 Portfolio: [theeccentriccoder01.github.io/Me](https://theeccentriccoder01.github.io/Me)
 - 💼 LinkedIn: [linkedin.com/in/eccentricexplorer](https://linkedin.com/in/eccentricexplorer)
 - 📊 DeepOptiNet: [kaggle.com/code/mreccentric/deepoptinet-parallel-unimodal-recognition](https://kaggle.com/code/mreccentric/deepoptinet-parallel-unimodal-recognition)
 - 🌍 VoyageVista: [voyagevista.vercel.app](https://voyagevista.vercel.app/)

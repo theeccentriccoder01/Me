@@ -27,7 +27,7 @@ This document provides a comprehensive analysis of the PDF resume for Sagnik Cha
 - **Email**: sc26220@it.jgec.ac.in
 - **Phone**: +91-9883465825
 - **Location**: Siliguri, West Bengal, India
-- **Website**: [theeccentriccoder.github.io/Me](https://theeccentriccoder.github.io/Me)
+- **Website**: [theeccentriccoder01.github.io/Me](https://theeccentriccoder01.github.io/Me)
 - **LinkedIn**: [linkedin.com/in/eccentricexplorer](https://linkedin.com/in/eccentricexplorer)
 
 ---
@@ -322,7 +322,7 @@ Worked on development of diverse range of beginner and intermediate-level web de
 ## 🔗 Hyperlinks in Document
 
 ### Active Links:
-1. **Website**: theeccentriccoder.github.io/Me (appears 3 times)
+1. **Website**: theeccentriccoder01.github.io/Me (appears 3 times)
 2. **LinkedIn**: linkedin.com/in/eccentricexplorer (appears 3 times)
 3. **Project - DeepOptiNet**: kaggle.com/code/mreccentric/deepoptinet-parallel-unimodal-recognition (appears 4 times)
 4. **Project - VoyageVista**: voyagevista.vercel.app (appears 3 times)

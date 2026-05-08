@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     console.log('%c👨‍💻 Sagnik Chakraborty', 'color: #1E90FF; font-size: 20px; font-weight: bold;');
     console.log('%cFront-End Developer | Deep Learning Enthusiast', 'color: #666; font-size: 14px;');
-    console.log('%c🌐 Portfolio: https://theeccentriccoder.github.io/Me', 'color: #1E90FF; font-size: 12px;');
+    console.log('%c🌐 Portfolio: https://theeccentriccoder01.github.io/Me', 'color: #1E90FF; font-size: 12px;');
     console.log('%c💼 LinkedIn: https://linkedin.com/in/eccentricexplorer', 'color: #1E90FF; font-size: 12px;');
     console.log('%c---', 'color: #ccc;');
     console.log('%cPress Ctrl+P (or Cmd+P) to print this resume as PDF', 'color: #333; font-size: 11px; font-style: italic;');
