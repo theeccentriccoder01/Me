@@ -12,14 +12,12 @@ export default function TowerLoader({ onComplete }) {
             setProgress(prev => {
                 if (prev >= 100) {
                     clearInterval(interval);
-                    // Add longer delay to ensure Three.js is fully loaded
-                    setTimeout(() => onComplete?.(), 800);
+                    setTimeout(() => onComplete?.(), 300);
                     return 100;
                 }
-                // Slower increment for smoother loading (3.5s total)
-                return prev + 1.4;
+                return Math.min(100, prev + 3.5);
             });
-        }, 50);
+        }, 35);
 
         return () => clearInterval(interval);
     }, [onComplete]);
@@ -87,10 +85,10 @@ export default function TowerLoader({ onComplete }) {
                 
                 <div className="loader-text">
                     <h2>Building The Universe</h2>
-                    <div className="progress-bar">
-                        <div className="progress-fill" style={{ width: `${progress}%` }} />
+                    <div className="tower-progress-bar">
+                        <div className="tower-progress-fill" style={{ width: `${progress}%` }} />
                     </div>
-                    <p className="progress-percent">{progress}%</p>
+                    <p className="progress-percent">{Math.round(progress)}%</p>
                 </div>
             </div>
         </div>

@@ -80,11 +80,11 @@ export default function Page() {
     // Auto-transition from INTRO to TOWER_SCROLL after tower settles
     useEffect(() => {
         if (mode === MODES.INTRO && !isLoading) {
-            // Extended time for proper tower animation completion
+            // Snappy transition to interactive tower scroll mode
             const timer = setTimeout(() => {
                 setIntroSettled(true);
                 setMode(MODES.TOWER_SCROLL);
-            }, 6500);
+            }, 2800);
             return () => clearTimeout(timer);
         }
     }, [mode, isLoading]);
@@ -237,7 +237,7 @@ export default function Page() {
             e.preventDefault();
             touchAccumulator.current += delta;
 
-            const threshold = 60;
+            const threshold = 35; // Responsive swipe threshold for mobile
             if (Math.abs(touchAccumulator.current) >= threshold) {
                 const direction = touchAccumulator.current > 0 ? -1 : 1;
                 touchAccumulator.current = 0;

@@ -119,10 +119,10 @@ function CosmicBackground({ isIntro }) {
                 float fbm(vec2 p) {
                     float v = 0.0;
                     float a = 0.55;
-                    for (int i = 0; i < 5; i++) {
+                    for (int i = 0; i < 3; i++) {
                         v += a * noise(p);
-                        p *= 2.02;
-                        a *= 0.52;
+                        p *= 2.05;
+                        a *= 0.5;
                     }
                     return v;
                 }
@@ -550,24 +550,22 @@ function IntroElement({ position, onExplore, isVisible }) {
 function FloatingFurniture({ position, type, delay = 0 }) {
     const meshRef = useRef();
     const [hovered, setHovered] = useState(false);
-    const S = TOWER_SCALE * FURNITURE_SCALE; // effective furniture scale
+    const S = TOWER_SCALE * FURNITURE_SCALE;
 
     useFrame((state) => {
         if (meshRef.current) {
-            // subtler bob and rotation for an elegant, organized feel
-            meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * (0.6 + 0.1 * FURNITURE_SCALE) + delay) * (0.08 * FURNITURE_SCALE);
+            // Elegant subtle hovering motion
+            meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 0.8 + delay) * (0.07 * FURNITURE_SCALE);
             if (type !== 'hexCell' && type !== 'portal') {
-                meshRef.current.rotation.y = state.clock.elapsedTime * (0.04 + 0.01 * FURNITURE_SCALE) + delay;
+                meshRef.current.rotation.y = state.clock.elapsedTime * 0.04 + delay;
             }
 
-            // smooth scale on hover
-            const target = hovered ? 1.06 : 1.0;
+            const target = hovered ? 1.08 : 1.0;
             const current = meshRef.current.scale.x || 1;
-            const next = THREE.MathUtils.lerp(current, target, 0.08);
+            const next = THREE.MathUtils.lerp(current, target, 0.1);
             meshRef.current.scale.set(next, next, next);
         }
     });
-
 
     if (type === 'desk') {
         return (
@@ -577,28 +575,26 @@ function FloatingFurniture({ position, type, delay = 0 }) {
                 onPointerOver={() => setHovered(true)}
                 onPointerOut={() => setHovered(false)}
             >
-                <pointLight intensity={hovered ? 0.9 : 0.35} distance={6 * S} color="#ff66aa" />
-                {/* Floating desk with glass top - heavier, glossier */}
+                {/* Floating sleek desk with cosmic obsidian finish */}
                 <mesh position={[0, 0, 0]}>
-                    <boxGeometry args={[3 * S, 0.22 * S, 1.8 * S]} />
-                    <meshPhysicalMaterial
-                        color="#0f0507"
-                        roughness={0.06}
-                        transmission={0.65}
-                        thickness={0.6}
-                        reflectivity={0.8}
-                        transparent
+                    <boxGeometry args={[3 * S, 0.18 * S, 1.8 * S]} />
+                    <meshStandardMaterial
+                        color="#120406"
+                        roughness={0.15}
+                        metalness={0.9}
+                        emissive="#AD2831"
+                        emissiveIntensity={hovered ? 0.45 : 0.15}
                     />
                 </mesh>
-                {/* Desk frame */}
-                <mesh position={[0, -0.36 * S, 0]}>
-                    <boxGeometry args={[2.8 * S, 0.14 * S, 1.4 * S]} />
-                    <meshStandardMaterial color="#070203" metalness={0.92} roughness={0.14} emissive="#FF4D6D" emissiveIntensity={hovered ? 1.2 : 0.4} />
+                {/* Sleek edge accent beam */}
+                <mesh position={[0, -0.1 * S, 0.9 * S]}>
+                    <boxGeometry args={[3 * S, 0.04 * S, 0.04 * S]} />
+                    <meshBasicMaterial color="#ff4d6d" />
                 </mesh>
-                {/* Holographic screen on desk */}
-                <mesh position={[0, 1.1 * S, 0]} rotation={[0.25, 0, 0]}>
-                    <planeGeometry args={[2.6 * S, 1.6 * S]} />
-                    <meshBasicMaterial color="#00ffff" transparent opacity={0.28} side={2} />
+                {/* Holographic workstation display */}
+                <mesh position={[0, 0.9 * S, 0]} rotation={[0.2, 0, 0]}>
+                    <planeGeometry args={[2.4 * S, 1.4 * S]} />
+                    <meshBasicMaterial color="#00e5ff" transparent opacity={hovered ? 0.5 : 0.3} side={THREE.DoubleSide} />
                 </mesh>
             </group>
         );
@@ -607,36 +603,33 @@ function FloatingFurniture({ position, type, delay = 0 }) {
     if (type === 'chair') {
         return (
             <group ref={meshRef} position={position} onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}>
-                <pointLight intensity={hovered ? 0.7 : 0.28} distance={5 * S} color="#ff6699" />
+                {/* Floating ergonomic pedestal */}
                 <mesh>
-                    <cylinderGeometry args={[0.56 * S, 0.46 * S, 0.18 * S, 18]} />
-                    <meshStandardMaterial color="#120506" metalness={0.86} roughness={0.2} emissive="#FF3A57" emissiveIntensity={hovered ? 0.9 : 0.35} />
+                    <cylinderGeometry args={[0.55 * S, 0.45 * S, 0.16 * S, 14]} />
+                    <meshStandardMaterial color="#140608" metalness={0.85} roughness={0.2} emissive="#ff4d6d" emissiveIntensity={hovered ? 0.6 : 0.25} />
                 </mesh>
-                <mesh position={[0, 0.66 * S, -0.28 * S]}>
-                    <boxGeometry args={[0.82 * S, 1.12 * S, 0.16 * S]} />
-                    <meshStandardMaterial color="#120506" metalness={0.86} roughness={0.2} emissive="#FF3A57" emissiveIntensity={hovered ? 0.9 : 0.35} />
+                <mesh position={[0, 0.65 * S, -0.26 * S]}>
+                    <boxGeometry args={[0.8 * S, 1.05 * S, 0.12 * S]} />
+                    <meshStandardMaterial color="#140608" metalness={0.85} roughness={0.2} emissive="#ff4d6d" emissiveIntensity={hovered ? 0.6 : 0.25} />
                 </mesh>
             </group>
         );
     }
 
-    // 'orb' decorative pieces removed to maintain a purposeful, classy interior.
-
     if (type === 'shelf') {
         return (
             <group ref={meshRef} position={position} onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}>
-                <pointLight intensity={hovered ? 0.8 : 0.32} distance={7 * S} color="#ff66aa" />
                 {[0, 1, 2].map((i) => (
                     <group key={i} position={[0, i * 1 * S, 0]}>
                         <mesh>
-                            <boxGeometry args={[3 * S, 0.14 * S, 0.6 * S]} />
-                            <meshPhysicalMaterial color="#220808" roughness={0.08} transmission={0.55} thickness={0.22} transparent />
+                            <boxGeometry args={[3 * S, 0.1 * S, 0.6 * S]} />
+                            <meshStandardMaterial color="#1a0508" metalness={0.8} roughness={0.25} emissive="#ff3355" emissiveIntensity={hovered ? 0.5 : 0.2} />
                         </mesh>
-                        {/* Items on shelf */}
-                        {[[-1, 0.15, 0], [0.5, 0.2, 0], [1.2, 0.12, 0]].map(([x, h, z], j) => (
+                        {/* Data cubes on shelf */}
+                        {[[-0.9, 0.15, 0], [0.4, 0.2, 0], [1.1, 0.14, 0]].map(([x, h, z], j) => (
                             <mesh key={j} position={[x * S, (h + 0.05) * S, z * S]}>
-                                <boxGeometry args={[0.38 * S, (h * 2) * S, 0.22 * S]} />
-                                <meshStandardMaterial color="#0a0505" metalness={0.88} roughness={0.16} emissive="#FF3A57" emissiveIntensity={hovered ? 0.9 : 0.35} />
+                                <boxGeometry args={[0.35 * S, (h * 2) * S, 0.2 * S]} />
+                                <meshStandardMaterial color="#080203" metalness={0.9} roughness={0.2} emissive="#ff4d6d" emissiveIntensity={hovered ? 0.8 : 0.35} />
                             </mesh>
                         ))}
                     </group>
@@ -648,18 +641,16 @@ function FloatingFurniture({ position, type, delay = 0 }) {
     if (type === 'server') {
         return (
             <group ref={meshRef} position={position} onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}>
-                {/* Pot */}
-                <mesh position={[0, -0.36 * S, 0]}>
-                    <cylinderGeometry args={[0.32 * S, 0.26 * S, 0.6 * S, 10]} />
-                    <meshStandardMaterial color="#2b1f18" metalness={0.12} roughness={0.5} />
+                {/* Modern server monolith */}
+                <mesh position={[0, 0.5 * S, 0]}>
+                    <boxGeometry args={[1.2 * S, 2.2 * S, 0.9 * S]} />
+                    <meshStandardMaterial color="#0a0305" metalness={0.92} roughness={0.2} emissive="#AD2831" emissiveIntensity={hovered ? 0.5 : 0.2} />
                 </mesh>
-                {/* Subtle green plant — simple, natural shapes */}
-                {[0, 0.28].map((offset, i) => (
-                    <mesh key={i} position={[offset * 0.3 * S, (0.36 + i * 0.18) * S, offset * 0.15 * S]} rotation={[0.05 * i, i * 0.15, 0.05]}>
-                        <coneGeometry args={[0.12 * S, (0.6 + i * 0.08) * S, 6]} />
-                        <meshStandardMaterial color="#4ba26b" metalness={0.05} roughness={0.45} />
-                    </mesh>
-                ))}
+                {/* Status indicator strip */}
+                <mesh position={[0, 0.5 * S, 0.46 * S]}>
+                    <planeGeometry args={[0.15 * S, 1.8 * S]} />
+                    <meshBasicMaterial color="#00ffcc" />
+                </mesh>
             </group>
         );
     }
@@ -667,17 +658,14 @@ function FloatingFurniture({ position, type, delay = 0 }) {
     if (type === 'plant') {
         return (
             <group ref={meshRef} position={position} onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}>
-                <pointLight intensity={hovered ? 0.75 : 0.28} distance={6 * S} color="#ff44aa" />
-                {/* Pot */}
-                <mesh position={[0, -0.36 * S, 0]}>
-                    <cylinderGeometry args={[0.32 * S, 0.26 * S, 0.6 * S, 10]} />
-                    <meshStandardMaterial color="#130506" metalness={0.9} roughness={0.2} />
+                <mesh position={[0, -0.3 * S, 0]}>
+                    <cylinderGeometry args={[0.3 * S, 0.24 * S, 0.5 * S, 10]} />
+                    <meshStandardMaterial color="#120506" metalness={0.8} roughness={0.3} />
                 </mesh>
-                {/* Glowing crystal plant */}
-                {[0, 0.3, -0.25].map((offset, i) => (
-                    <mesh key={i} position={[offset * 0.5 * S, (0.36 + i * 0.18) * S, offset * 0.3 * S]} rotation={[0.1 * i, i * 0.5, 0.1]}>
-                        <coneGeometry args={[0.12 * S, (0.6 + i * 0.12) * S, 6]} />
-                        <meshStandardMaterial color="#FF3A57" emissive="#ff7a88" emissiveIntensity={hovered ? 1.1 : 0.55} transparent opacity={0.88} />
+                {[0, 0.25, -0.22].map((offset, i) => (
+                    <mesh key={i} position={[offset * 0.45 * S, (0.35 + i * 0.16) * S, offset * 0.25 * S]} rotation={[0.08 * i, i * 0.45, 0.08]}>
+                        <coneGeometry args={[0.1 * S, (0.55 + i * 0.1) * S, 6]} />
+                        <meshStandardMaterial color="#FF3A57" emissive="#ff7a88" emissiveIntensity={hovered ? 1.0 : 0.6} transparent opacity={0.9} />
                     </mesh>
                 ))}
             </group>
@@ -687,33 +675,28 @@ function FloatingFurniture({ position, type, delay = 0 }) {
     if (type === 'console') {
         return (
             <group ref={meshRef} position={position} onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}>
-                <pointLight intensity={hovered ? 0.9 : 0.35} distance={7 * S} color="#ff88cc" />
-                {/* Console base */}
                 <mesh position={[0, 0, 0]}>
-                    <boxGeometry args={[2.2 * S, 0.9 * S, 1.1 * S]} />
-                    <meshStandardMaterial color="#080306" metalness={0.9} roughness={0.2} emissive="#FF4D6D" emissiveIntensity={hovered ? 0.95 : 0.38} />
+                    <boxGeometry args={[2.2 * S, 0.85 * S, 1.0 * S]} />
+                    <meshStandardMaterial color="#080306" metalness={0.9} roughness={0.2} emissive="#FF4D6D" emissiveIntensity={hovered ? 0.8 : 0.3} />
                 </mesh>
-                {/* Screen */}
-                <mesh position={[0, 0.7 * S, 0.34 * S]} rotation={[-0.32, 0, 0]}>
-                    <planeGeometry args={[1.8 * S, 0.92 * S]} />
-                    <meshBasicMaterial color="#FF7A88" transparent opacity={0.42} side={2} />
+                <mesh position={[0, 0.65 * S, 0.3 * S]} rotation={[-0.3, 0, 0]}>
+                    <planeGeometry args={[1.8 * S, 0.85 * S]} />
+                    <meshBasicMaterial color="#FF7A88" transparent opacity={0.4} side={THREE.DoubleSide} />
                 </mesh>
             </group>
         );
     }
 
     if (type === 'hexCell') {
-        // subtle wall motif — low glow, low reflectivity
         return (
             <group ref={meshRef} position={position} onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}>
                 <mesh rotation={[Math.PI / 2, 0, 0]}>
-                    <cylinderGeometry args={[0.9 * S, 0.9 * S, 0.14 * S, 6]} />
-                    <meshStandardMaterial color="#2b1620" metalness={0.18} roughness={0.36} />
+                    <cylinderGeometry args={[0.9 * S, 0.9 * S, 0.12 * S, 6]} />
+                    <meshStandardMaterial color="#2b1620" metalness={0.2} roughness={0.4} />
                 </mesh>
-                {/* Inner accent */}
                 <mesh rotation={[Math.PI / 2, 0, 0]}>
-                    <cylinderGeometry args={[0.6 * S, 0.6 * S, 0.18 * S, 6]} />
-                    <meshBasicMaterial color="#ffccd5" transparent opacity={0.28} />
+                    <cylinderGeometry args={[0.6 * S, 0.6 * S, 0.15 * S, 6]} />
+                    <meshBasicMaterial color="#ffccd5" transparent opacity={0.3} />
                 </mesh>
             </group>
         );
@@ -722,20 +705,17 @@ function FloatingFurniture({ position, type, delay = 0 }) {
     if (type === 'portal') {
         return (
             <group ref={meshRef} position={position} onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}>
-                <pointLight intensity={hovered ? 0.7 : 0.25} distance={6 * S} color="#ff88aa" />
-                {/* Rotating portal ring */}
                 <mesh rotation={[0, 0, 0]}>
-                    <torusGeometry args={[1.2 * S, 0.08 * S, 12, 32]} />
-                    <meshStandardMaterial color="#FF7A88" emissive="#FF7A88" emissiveIntensity={hovered ? 0.9 : 0.45} metalness={0.38} roughness={0.16} />
+                    <torusGeometry args={[1.2 * S, 0.07 * S, 8, 24]} />
+                    <meshStandardMaterial color="#FF7A88" emissive="#FF7A88" emissiveIntensity={hovered ? 1.0 : 0.5} metalness={0.4} roughness={0.2} />
                 </mesh>
                 <mesh rotation={[0, Math.PI / 3, 0]}>
-                    <torusGeometry args={[0.95 * S, 0.05 * S, 10, 32]} />
-                    <meshStandardMaterial color="#ff99aa" emissive="#ff99aa" emissiveIntensity={hovered ? 0.65 : 0.32} />
+                    <torusGeometry args={[0.95 * S, 0.04 * S, 8, 24]} />
+                    <meshStandardMaterial color="#ff99aa" emissive="#ff99aa" emissiveIntensity={hovered ? 0.8 : 0.4} />
                 </mesh>
-                {/* Center glow */}
                 <mesh>
-                    <sphereGeometry args={[0.36 * S, 24, 24]} />
-                    <meshStandardMaterial color="#ff99aa" emissive="#ffccd5" emissiveIntensity={hovered ? 0.6 : 0.2} transparent opacity={0.56} />
+                    <sphereGeometry args={[0.34 * S, 16, 16]} />
+                    <meshBasicMaterial color="#ffccd5" transparent opacity={0.65} />
                 </mesh>
             </group>
         );
@@ -805,16 +785,17 @@ function CrystallinePillar({ position, height, isActive }) {
 
     return (
         <group position={position}>
-            {/* Outer crystal shell - Optimized Material */}
+            {/* Outer crystal shell - Sleek obsidian crystal */}
             <mesh>
                 <cylinderGeometry args={[0.6 * TOWER_SCALE, 0.8 * TOWER_SCALE, height, 6]} />
-                <meshPhysicalMaterial
-                    color="#220808"
-                    metalness={0.1}
-                    roughness={0.1}
-                    transmission={0.6}
-                    thickness={0.5}
+                <meshStandardMaterial
+                    color="#1c0608"
+                    metalness={0.85}
+                    roughness={0.2}
+                    emissive="#AD2831"
+                    emissiveIntensity={0.2}
                     transparent
+                    opacity={0.85}
                 />
             </mesh>
             {/* Inner energy core */}
@@ -919,12 +900,14 @@ function TowerFloor({ position, rotation, isOpen, isActive, isIntro, onSectionSe
                 {/* Main glass panel */}
                 <mesh>
                     <boxGeometry args={[floorWidth - 2 * TOWER_SCALE, floorHeight - 2 * TOWER_SCALE, 0.3 * TOWER_SCALE]} />
-                    <meshPhysicalMaterial
-                        color="#4c1717"
-                        roughness={0.1}
-                        transmission={0.5}
-                        thickness={0.3}
+                    <meshStandardMaterial
+                        color="#2a080c"
+                        metalness={0.9}
+                        roughness={0.15}
+                        emissive="#AD2831"
+                        emissiveIntensity={isActive ? 0.3 : 0.08}
                         transparent
+                        opacity={0.8}
                     />
                 </mesh>
                 {/* Decorative frame */}
@@ -984,16 +967,14 @@ function TowerFloor({ position, rotation, isOpen, isActive, isIntro, onSectionSe
                             {/* The Holographic Glass */}
                             <mesh>
                                 <boxGeometry args={[0.2 * TOWER_SCALE, winHeight, winWidth]} />
-                                <meshPhysicalMaterial
-                                    color="#ffa3a3"
-                                    emissive="#ffa3a3"
-                                    emissiveIntensity={0.15} // Slightly boosted blue glow
-                                    metalness={0.1}
-                                    roughness={0.0}
-                                    transmission={0.9}
-                                    thickness={0.05}
+                                <meshStandardMaterial
+                                    color="#2a080c"
+                                    emissive="#ff6688"
+                                    emissiveIntensity={isActive ? 0.35 : 0.12}
+                                    metalness={0.85}
+                                    roughness={0.2}
                                     transparent
-                                    opacity={0.25} // Slightly more visible
+                                    opacity={0.75}
                                     side={THREE.DoubleSide}
                                 />
                             </mesh>
@@ -1046,31 +1027,19 @@ function TowerFloor({ position, rotation, isOpen, isActive, isIntro, onSectionSe
                 </mesh>
             </group>
 
-            {/* === INTERIOR FURNITURE — Simplified, organized layout === */}
+            {/* === INTERIOR FURNITURE — Classy Minimalist Layout === */}
             <group>
-                {/* Symmetric workstations (left, center, right) */}
-                <FloatingFurniture position={[-6 * TOWER_SCALE, -5 * TOWER_SCALE, 0]} type="desk" delay={0} />
-                <FloatingFurniture position={[-6 * TOWER_SCALE, -6.4 * TOWER_SCALE, 1.2 * TOWER_SCALE]} type="chair" delay={0.2} />
+                {/* Executive central holographic command desk & chair */}
+                <FloatingFurniture position={[0, -5 * TOWER_SCALE, 1.2 * TOWER_SCALE]} type="desk" delay={0.2} />
+                <FloatingFurniture position={[0, -6.2 * TOWER_SCALE, 2.8 * TOWER_SCALE]} type="chair" delay={0.4} />
 
-                <FloatingFurniture position={[0 * TOWER_SCALE, -5 * TOWER_SCALE, 1.8 * TOWER_SCALE]} type="desk" delay={0.5} />
-                <FloatingFurniture position={[0, -6.4 * TOWER_SCALE, 3.0 * TOWER_SCALE]} type="chair" delay={0.7} />
+                {/* Back focal tech: Monolith server on left, celestial plant on right */}
+                <FloatingFurniture position={[-8 * TOWER_SCALE, -4.5 * TOWER_SCALE, -2.0 * TOWER_SCALE]} type="server" delay={0.6} />
+                <FloatingFurniture position={[8 * TOWER_SCALE, -4.5 * TOWER_SCALE, -2.0 * TOWER_SCALE]} type="plant" delay={0.8} />
 
-                <FloatingFurniture position={[6 * TOWER_SCALE, -5 * TOWER_SCALE, 0]} type="desk" delay={1.0} />
-                <FloatingFurniture position={[6 * TOWER_SCALE, -6.4 * TOWER_SCALE, 1.2 * TOWER_SCALE]} type="chair" delay={1.2} />
-
-                {/* Back tech: two server banks tucked to the rear corners */}
-                <FloatingFurniture position={[-9 * TOWER_SCALE, -4.6 * TOWER_SCALE, -2.2 * TOWER_SCALE]} type="server" delay={1.6} />
-                <FloatingFurniture position={[9 * TOWER_SCALE, -4.6 * TOWER_SCALE, -2.2 * TOWER_SCALE]} type="server" delay={1.9} />
-
-                {/* Central portal as focal piece, modest sizing */}
-                <FloatingFurniture position={[0, 0.8 * TOWER_SCALE, backZ * 0.1]} type="portal" delay={0.4} />
-
-                {/* Two hex cells as subtle wall motifs */}
-                <FloatingFurniture position={[-10 * TOWER_SCALE, 2.8 * TOWER_SCALE, 0]} type="hexCell" delay={2.4} />
-                <FloatingFurniture position={[10 * TOWER_SCALE, 2.8 * TOWER_SCALE, 0]} type="hexCell" delay={2.8} />
-
-                {/* Single shelf at mid-back for balance */}
-                <FloatingFurniture position={[0, 2 * TOWER_SCALE, backZ * 0.5]} type="shelf" delay={3.4} />
+                {/* Central floating portal & back wall hex accent */}
+                <FloatingFurniture position={[0, 1.2 * TOWER_SCALE, backZ * 0.15]} type="portal" delay={0.3} />
+                <FloatingFurniture position={[0, 4.0 * TOWER_SCALE, backZ * 0.45]} type="hexCell" delay={1.0} />
             </group>
 
             {/* Subtle interior particles */}
@@ -1424,7 +1393,7 @@ function CameraController({ currentSection, mode, floorHeight, totalSections, is
         targetZ = Math.max(MIN_Z, Math.min(targetZ, MAX_Z));
 
         // Smooth camera movement
-        const speed = isIntro ? 0.025 : (mode === 'TOWER_SCROLL' ? 0.12 : 0.08);
+        const speed = isIntro ? 0.05 : (mode === 'TOWER_SCROLL' ? 0.12 : 0.08);
 
         // For normal section navigation, force Y exactly to the computed target to avoid
         // any interpolation accumulation. Keep X/Z smoothed for visual polish.
@@ -1533,11 +1502,11 @@ export default function CosmicTowerBackground({
         return () => clearTimeout(timer);
     }, []);
 
-    // Animate intro progress from 0 to 1 over 5 seconds (extended for smoother animation)
+    // Animate intro progress from 0 to 1 over 2.4 seconds for a cinematic yet snappy transition
     useEffect(() => {
         if (isIntro && isSceneReady) {
             let startTime = null;
-            const duration = 5000; // Extended to 5 seconds
+            const duration = 2400;
 
             const animate = (timestamp) => {
                 if (!startTime) startTime = timestamp;
